@@ -167,8 +167,6 @@ pre/migrations/__init__.py,0
 
 settings.py,0
 
-manage.py,0
-
 payment_info/__init__.py,0
 
 payment_info/migrations/__init__.py,0

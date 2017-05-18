@@ -9,6 +9,8 @@ import dill as pickle                     # for pickling functions
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+print("BASE_DIR: ", BASE_DIR)
+
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
 if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
