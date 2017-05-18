@@ -64,6 +64,10 @@ LANGUAGE_CODE = 'de'
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
 
+# STatic files
+STATIC_URL = '/static/'
+
+
 # SENTRY_DSN = ''
 
 DEMO_PAGE_INTRO_TEXT = """

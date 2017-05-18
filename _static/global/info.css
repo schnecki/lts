@@ -1,5 +1,8 @@
 
 
+.phase{}
+
+
 .info-warning{
     background-image:-webkit-gradient(linear,left 0,left 100%,from(#e5fce3),to(#e5fce0));
     background-image:-webkit-linear-gradient(top,#e5fce3 0,#e5fce0 100%);

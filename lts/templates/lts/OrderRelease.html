@@ -1,6 +1,7 @@
 {% extends "global/Base.html" %}
 {% load staticfiles otree_tags %}
 {% load app_filters %}
+{% load staticfiles %}
 
 {% block title %}
 Freigabe von Aufträgen für den {{ current_day | get_date }}
@@ -8,6 +9,8 @@ Freigabe von Aufträgen für den {{ current_day | get_date }}
 
 
 {% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 
 <style type="text/css">
       table, th, td  {
