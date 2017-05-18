@@ -179,8 +179,8 @@ lts/migrations/__init__.py,0
 
 lts/templatetags/__init__.py,0
 
-flycheck_settings.py,0
-
 survey/__init__.py,0
 
 survey/migrations/__init__.py,0
+
+flycheck_manage.py,0
