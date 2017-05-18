@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import os
 import sys
-import commands
+import subprocess
 
-commands.getstatusoutput('otree resetdb')
+subprocess.call(["otree", "resetdb"])
 
 
 if __name__ == "__main__":
