@@ -69,7 +69,7 @@ class Constants(BaseConstants):
 
 
     # ["id","start","end"]
-    file_per = "../doc/data/Perioden.csv"
+    file_per = "./doc/data/Perioden.csv"
 
     with open(file_per, 'r') as csvfile:
         periods = []

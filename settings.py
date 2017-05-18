@@ -58,7 +58,7 @@ USE_POINTS = False
 
 
 # e.g. en, de, fr, it, ja, zh-hans
-# see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
+# see: https./docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code
 LANGUAGE_CODE = 'de'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
@@ -72,7 +72,7 @@ oTree games
 
 # from here on are qualifications requirements for workers
 # see description for requirements on Amazon Mechanical Turk website:
-# http://docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_QualificationRequirementDataStructureArticle.html
+# http./docs.aws.amazon.com/AWSMechTurk/latest/AWSMturkAPI/ApiReference_QualificationRequirementDataStructureArticle.html
 # and also in docs for boto:
 # https://boto.readthedocs.org/en/latest/ref/mturk.html?highlight=mturk#module-boto.mturk.qualification
 
@@ -124,7 +124,7 @@ SESSION_CONFIGS = [
                          'survey',
                          'payment_info'
         ],
-        'file_dem': "../doc/data/KoKoNoRo.csv" if (not MAKE_SCREENSHOTS) else "../doc/data/KoKoNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/KoKoNoRo.csv" if (not MAKE_SCREENSHOTS) else "./doc/data/KoKoNoRoSCREENSHOT.csv",
         'start_flow_time': 6.75,
         'flow_time_last_year': 6.75,
         'start_wip_count': 2,
@@ -159,7 +159,7 @@ SESSION_CONFIGS = [
                          'survey',
                          'payment_info'
         ],
-        'file_dem': "../doc/data/KoVarNoRo.csv" if (not MAKE_SCREENSHOTS) else  "../doc/data/KoVarNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/KoVarNoRo.csv" if (not MAKE_SCREENSHOTS) else  "./doc/data/KoVarNoRoSCREENSHOT.csv",
         'start_flow_time': 8.10,
         'flow_time_last_year': 13.49,
         'start_wip_count': 4,
@@ -196,7 +196,7 @@ SESSION_CONFIGS = [
                          'lts',
                          'survey',
                          'payment_info'],
-        'file_dem': "../doc/data/KoKoRo.csv" if (not MAKE_SCREENSHOTS) else "../doc/data/KoKoNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/KoKoRo.csv" if (not MAKE_SCREENSHOTS) else "./doc/data/KoKoNoRoSCREENSHOT.csv",
         'start_flow_time': 6.75,
         'flow_time_last_year': 13.01,
         'start_wip_count': 4,
@@ -233,7 +233,7 @@ SESSION_CONFIGS = [
                          'lts',
                          'survey',
                          'payment_info'],
-        'file_dem': "../doc/data/SaiKonNoRo.csv" if (not MAKE_SCREENSHOTS) else "../doc/data/SaiKonNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/SaiKonNoRo.csv" if (not MAKE_SCREENSHOTS) else "./doc/data/SaiKonNoRoSCREENSHOT.csv",
         'start_flow_time': 6.75,
         'flow_time_last_year': 17.11,
         'start_wip_count': 3,
