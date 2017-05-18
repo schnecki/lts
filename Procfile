@@ -1,2 +1,2 @@
-web: otree resetdb
+web: otree webandworkers
 timeoutworker: otree timeoutworker
