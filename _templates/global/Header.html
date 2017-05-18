@@ -1,0 +1,192 @@
+{% load otree_tags staticfiles %}
+{% load app_filters %}
+
+
+<div class="header well well-lg">
+  <h3 class="panel-sub-heading">
+    Aktueller Status vom {{ datetimetext }} des {{ current_day | get_date }}
+  </h3><br />
+</div>
+
+{% if is_last_week_release_round %}
+<div class="info info-warning">
+   Dies ist die Vorbereitungsphase. Unten sehen Sie die <b>von vor 10 Tagen
+   freigegebenen Aufträge</b>. Entnehmen Sie die Informationen aus dem Auftragsbuch
+   und klicken Sie auf 'Weiter' um die Rückmeldung für diese Entscheidung zu
+   erhalten.
+</div>
+{% else %}
+
+
+<div id="testtimer" class="alert alert-warning">
+  Zeit bis zum Ende der Testphase: <span id="timer"></span> Sekunden<span id="timerdone"></span>
+</div>
+
+{% if show_howto_info %}
+<div class="info">
+    TODO Siehe Anleitung Seite 5.
+</div>
+{% endif %}
+
+
+<div class="header well well-lg">
+  <p>
+    <!-- <h4>Auf Basis des vergangenen Jahres (Planwerte)</h4> -->
+    <div id="leadtime">
+    <table class="info">
+      <!-- <thead> -->
+      <!--   <th class="lhs">Durchlaufzeit</th> -->
+      <!--   <th class="rhs">der vergangenen Periode</th> -->
+      <!--   <th class="rhs">des vergangenen Jahres</th> -->
+      <!-- </thead> -->
+      <tr>
+        <td class="lhs">Durchschnittliche Zeit im System pro Auftrag auf Basis des vergangenen Jahres (Planwerte)</td>
+        <td class="rhs">{{ flow_time_year }} Tage</td>
+      </tr>
+    </table>
+    </div>
+  </p>
+</div>
+<div class="header well well-lg">
+  <p>
+    <!-- <h4></h4> -->
+    <div id="leadtime">
+    <table class="info">
+      <!-- <thead> -->
+      <!--   <th class="lhs">Durchlaufzeit</th> -->
+      <!--   <th class="rhs">der vergangenen Periode</th> -->
+      <!--   <th class="rhs">des vergangenen Jahres</th> -->
+      <!-- </thead> -->
+      <tr>
+        <td class="lhs">Durchschnittliche Zeit im System pro Auftrag vom letzten Durchgang</td>
+        <td class="rhs">{{ flow_time }} Tage</td>
+      </tr>
+    </table>
+    </div>
+  </p>
+</div>
+<div class="header well well-lg">
+  <p>
+    <h4>Kosten
+      <span id="hideshowcosts">
+      (<span id="showcosts" style="display:none;" ><a href="javascript:showcosts();">anzeigen</a></span><span id="hidecosts" style="display:inline;"><a href="javascript:hidecosts();">verbergen</a></span>)</span></h4>
+    <div id="costs">
+    <table class="infocosts">
+      <thead>
+        <th class="lhs">Kosten für...</th>
+        <th class="rhs">Lagerbestand Wartezentren</th>
+        <th class="rhs">Lagerbestand Endprodukte</th>
+        <th class="rhs">Verspätungen</th>
+        <th class="rhs">Summe</th>
+      </thead>
+      <tr>
+        <td class="lhs">Bezogen auf den aktuellen Durchgang</td>
+        <td class="rhs">{{ wip }}</td>
+        <td class="rhs">{{ fgi }}</td>
+        <td class="rhs">{{ bo }}</td>
+        <td class="rhs">{{ wipfgibo }}</td>
+      </tr>
+      <tr>
+        <td class="lhs">Bezogen auf alle Durchgänge</td>
+        <td class="rhs">{{ sum_wip }}</td>
+        <td class="rhs">{{ sum_fgi }}</td>
+        <td class="rhs">{{ sum_bo }}</td>
+        <td class="rhs">{{ sum_costs }}</td>
+      </tr>
+    </table>
+    </div>
+  </p>
+</div>
+{% endif %}
+<input style="visibility:hidden;" type="textfield" id="id_click_show" name="click_show" value="0" />
+<input style="visibility:hidden;" type="textfield" id="start_time" name="start_time" value="{{ start_time }}" />
+
+
+{% block scripts %}
+<script>
+  var counterShow = 0;
+function showcosts() {
+  document.getElementById('showcosts').style.display='none';
+  document.getElementById('hidecosts').style.display='inline';
+  document.getElementById('costs').style.display='inline';
+  document.getElementById('id_click_show').value = ++counterShow;
+}
+function hidecosts() {
+   document.getElementById('hidecosts').style.display='none';
+   document.getElementById('showcosts').style.display='inline';
+   document.getElementById('costs').style.display='none';
+}
+
+var secs_left = {{ seconds_left_test|json }}
+var test_phase = {{ is_test|json }}
+
+if (test_phase) {
+  // Update the count down every 1 second
+  var x = setInterval(function() {
+
+
+      // If the count down is finished, click next
+      if (secs_left < 0) {
+
+          document.getElementById("timer").innerHTML = 0;
+          document.getElementById("timerdone").innerHTML = " ...System beendet Testphase, bitte warten";
+          var xs = document.getElementsByClassName("next-button");
+          xs[0].click();
+      } else {
+          // Display the result in the element with id="demo"
+          document.getElementById("timer").innerHTML = secs_left;
+          secs_left-=1;
+      }
+  }, 1000);
+} else {
+  document.getElementById("testtimer").style.display='none';
+}
+
+
+// To disable f5
+function disableF5(e) { if (e.which == 116) e.preventDefault(); };
+$(document).bind("keydown", disableF5);
+
+</script>
+{% endblock %}
+
+{% block styles %}
+
+<style type="text/css">
+      .infocosts {
+          text-align:left;
+          width: 100%;
+
+      }
+
+      h3 {
+          text-align:center;
+      }
+
+      h4 {
+          text-align:left;
+          text-decoration: bold;
+      }
+.infocosts td {
+    font-family:Arial,Verdana,sans-serif;
+    font-size:1em;
+}
+
+.infocosts .lhs {
+    font-family:Arial,Verdana,sans-serif;
+    font-size:1em;
+    width: 280px;
+    text-align:left;
+}
+
+.infocosts .rhs {
+    font-family:Arial,Verdana,sans-serif;
+    font-size:1em;
+    text-align:center;
+    width: 100px;
+}
+
+
+</style>
+
+{% endblock %}

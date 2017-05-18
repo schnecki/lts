@@ -1,0 +1,37 @@
+
+flycheck_views.py,117
+class Demographics(6,141
+class RiskAttitude(16,393
+class Personality(22,484
+class HowTo(27,607
+class End(31,687
+
+models.py,117
+class Constants(11,242
+class Subsession(17,351
+class Group(21,396
+class Player(25,431
+    def set_payoff(26,457
+
+_builtin/__init__.py,151
+class Page(6,130
+    def z_autocomplete(8,159
+class WaitPage(14,311
+    def z_autocomplete(17,349
+class Bot(22,463
+    def z_autocomplete(24,490
+
+tests.py,49
+class PlayerBot(6,129
+    def play_round(8,152
+
+views.py,117
+class Demographics(6,141
+class RiskAttitude(16,393
+class Personality(22,484
+class HowTo(27,607
+class End(31,687
+
+__init__.py,0
+
+migrations/__init__.py,0

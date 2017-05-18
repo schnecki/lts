@@ -1,0 +1,31 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Ergebnisse für die letzte Freigabe
+{% endblock %}
+
+{% block content %}
+
+    {% include "global/Header.html" %}
+
+    <!-- <div style="visibility:hidden"> -->
+      {% next_button %}
+    <!-- </div> -->
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+document.getElementById('hideshowcosts').style.display='none';
+
+
+var secs = {{ seconds_left_test|json }}
+if (secs > 0) {
+  var xs = document.getElementsByClassName("next-button");
+  xs[0].innerHTML='Zurück';
+}
+
+
+</script>
+{% endblock %}

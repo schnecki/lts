@@ -1,0 +1,32 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Evaluierung
+{% endblock %}
+
+{% block content %}
+<div class="header well well-lg">
+  <center><p>Ihre Angaben werden vertraulich behandelt.</p></center>
+</div>
+
+<div class="header well well-lg">
+    {% for field in form %}
+        {% formfield field %}
+    {% endfor %}
+</div>
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script>
+        function sort(a, b) {
+            return (a.innerHTML > b.innerHTML) ? 1 : -1;
+        }
+        $('#id_country option').sort(sort).appendTo('#id_country');
+    </script>
+
+{% endblock %}

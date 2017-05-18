@@ -1,0 +1,77 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% load app_filters %}
+
+{% block title %}
+Produktionsprozess für diesen Durchgang läuft...
+{% endblock %}
+
+
+{% block content %}
+<div class="float_center">
+  <div class="clock child"></div>
+</div>
+
+<div style="visibility:hidden;">
+{% next_button %}
+</div>
+{% endblock %}
+
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static "global/flipclock.css" %}">
+  <style>
+  #center{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -50px;
+      margin-left: -50px;
+      width: 600px;
+      height: 200px;
+  }​
+
+  .float_center {
+    float: center;
+    position: relative;
+  }
+  .float_center > .child {
+  position: relative;
+     margin-left:auto;
+    margin-right:auto;
+  }
+
+  </style>
+{% endblock %}
+
+{% block scripts %}
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script src="{% static "global/flipclock.js" %}"></script>
+
+<script type="text/javascript">
+var clock;
+$(document).ready(function() {
+    var clock;
+
+    clock = $('.clock').FlipClock({
+        clockFace: 'DailyCounter',
+        autoStart: false,
+        startTime: new Date(new Date().getTime() + 1000*86400 * {{ current_day }}),
+        endTime: new Date(new Date().getTime() + 1000*86400 * {{ end_day }}),
+        handler: function() {
+            $(".next-button").click();
+
+        }
+    });
+
+    clock.setCountdown(false);
+    clock.start();
+
+});
+</script>
+
+
+{% endblock %}

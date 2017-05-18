@@ -1,0 +1,251 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% load app_filters %}
+{% load static %}
+
+{% block title %}
+Testaufgabenphase
+{% endblock %}
+
+{% block content %}
+
+
+<div class="header well well-lg">
+
+<div>Gegeben ist folgendes Beispiel mit 3 Aufträgen, welche alle an derselben Maschine
+bearbeitet werden. Bitte Beantworten Sie die untenstehenden Fragen auf Basis der
+Informationen aus in der Tabelle und der Anleitung.</div><br/><br/>
+
+
+    <table class="info">
+      <thead>
+        <th class="lhs">Auftrag</th>
+        <th class="rhs">Ankunftszeitpunkt</th>
+        <th class="rhs">Bedienendzeitpunkt</th>
+        <th class="rhs">Zeit im System</th>
+      </thead>
+      <tr>
+        <td class="lhs">1</td>
+        <td class="rhs">10:30 Uhr</td>
+        <td class="rhs">10:45 Uhr</td>
+        <td class="rhs">00:15 Min</td>
+      </tr>
+      <tr>
+        <td class="lhs">2</td>
+        <td class="rhs">10:35 Uhr</td>
+        <td class="rhs">11:00 Uhr</td>
+        <td class="rhs">00:25 Min</td>
+      </tr>
+      <tr>
+        <td class="lhs">3</td>
+        <td class="rhs">10:40 Uhr</td>
+        <td class="rhs">11:15 Uhr</td>
+        <td class="rhs">00:35 Min</td>
+      </tr>
+    </table>
+    <br/><br/>
+  <h4 class="panel-sub-heading">
+    Frage 1: Wie hoch ist die durchschnittliche Zeit im System pro Auftrag?
+  </h4>
+    <div id="a1ok" class="answerok" style="display:none">Richtig!</div>
+    <div id="a1false" class="answerfalse" style="display:none">Falsch!</div>
+    Antwort (nur Zahlen erlaubt): <input class="answer" type="textfield" id="a1" name="a1" value="" /> Min
+  <h4 class="panel-sub-heading">
+    Frage 2: Wie viele Aufträge befinden sich im Wartezentrum zum Zeitpunkt 10:35 Uhr?
+  </h4>
+
+    <div id="a2ok" class="answerok" style="display:none">Richtig!</div>
+    <div id="a2false" class="answerfalse" style="display:none">Falsch!</div>
+    Antwort (nur Zahlen erlaubt): <input class="answer" type="textfield" id="a2" name="a2" value="" /> Aufträge
+
+  <h4 class="panel-sub-heading">
+    Frage 3: Wie viele Aufträge befinden sich im Wartezentrum zum Zeitpunkt 10:40 Uhr?
+  </h4>
+    <div id="a3ok" class="answerok" style="display:none">Richtig!</div>
+    <div id="a3false" class="answerfalse" style="display:none">Falsch!</div>
+    Antwort (nur Zahlen erlaubt): <input class="answer" type="textfield" id="a3" name="a3" value="" /> Aufträge
+
+  <h4 class="panel-sub-heading">
+    Frage 4: Wieviele Aufträge haben als Output das Bedienzentrum bis 11:01 Uhr verlassen?
+  </h4>
+    <div id="a4ok" class="answerok" style="display:none">Richtig!</div>
+    <div id="a4false" class="answerfalse" style="display:none">Falsch!</div>
+    Antwort (nur Zahlen erlaubt): <input class="answer" type="textfield" id="a4" name="a4" value="" /> Aufträge
+
+  <h4 class="panel-sub-heading">
+    Frage 5: Wie lange muss der dritte Auftrag warten bis mit der Produktion im Bedienzentrum begonnen werden kann?
+  </h4>
+    <div id="a5ok" class="answerok" style="display:none">Richtig!</div>
+    <div id="a5false" class="answerfalse" style="display:none">Falsch!</div>
+    Antwort (nur Zahlen erlaub): <input class="answer" type="textfield" id="a5" name="a5" value="" /> Min
+
+</div>
+<!--
+    Documentation on how to write a django template here:
+    https://docs.djangoproject.com/en/1.8/ref/templates/language/
+
+    Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
+    http://getbootstrap.com/components/
+
+  -->
+<button class="btn btn-primary btn-large btn-primary" onclick="check()" type="button">Weiter</button>
+<div style="visibility:hidden;">
+  {% next_button %}
+
+  {% for field in form %}
+    {% formfield field %}
+  {% endfor %}
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+  var triesTestQ1 = 0;
+  var triesTestQ2 = 0;
+  var triesTestQ3 = 0;
+  var triesTestQ4 = 0;
+  var triesTestQ5 = 0;
+
+  function check() {
+    var a1 = document.getElementById("a1").value;
+    var a1true = false;
+    if (a1 == 25) {
+      a1true = true;
+      document.getElementById("a1ok").style.display='inline';
+      document.getElementById("a1false").style.display='none';
+    } else {
+      triesTestQ1++;
+      document.getElementById("a1ok").style.display='none';
+      document.getElementById("a1false").style.display='inline';
+    }
+
+    var a2 = document.getElementById("a2").value;
+    var a2true = false;
+    if (a2 == 1) {
+      a2true = true;
+      document.getElementById("a2ok").style.display='inline';
+      document.getElementById("a2false").style.display='none';
+    } else {
+      triesTestQ2++;
+      document.getElementById("a2ok").style.display='none';
+      document.getElementById("a2false").style.display='inline';
+    }
+
+    var a3 = document.getElementById("a3").value;
+    var a3true = false;
+    if (a3 == 2) {
+      a3true = true;
+      document.getElementById("a3ok").style.display='inline';
+      document.getElementById("a3false").style.display='none';
+    } else {
+      triesTestQ3++;
+      document.getElementById("a3ok").style.display='none';
+      document.getElementById("a3false").style.display='inline';
+    }
+
+    var a4 = document.getElementById("a4").value;
+    var a4true = false;
+    if (a4 == 2) {
+      a4true = true;
+      document.getElementById("a4ok").style.display='inline';
+      document.getElementById("a4false").style.display='none';
+    } else {
+      triesTestQ4++;
+      document.getElementById("a4ok").style.display='none';
+      document.getElementById("a4false").style.display='inline';
+    }
+
+    var a5 = document.getElementById("a5").value;
+    var a5true = false;
+    if (a5 == 20) {
+      a5true = true;
+      document.getElementById("a5ok").style.display='inline';
+      document.getElementById("a5false").style.display='none';
+    } else {
+      triesTestQ5++;
+      document.getElementById("a5ok").style.display='none';
+      document.getElementById("a5false").style.display='inline';
+    }
+
+
+    if (a1true && a2true && a3true && a4true && a5true) {
+      document.getElementById("id_triesTestQ1").value = triesTestQ1;
+      document.getElementById("id_triesTestQ2").value = triesTestQ2;
+      document.getElementById("id_triesTestQ3").value = triesTestQ3;
+      document.getElementById("id_triesTestQ4").value = triesTestQ4;
+      document.getElementById("id_triesTestQ5").value = triesTestQ5;
+
+      alert("Alles richtig. Es geht weiter!");
+      var xs = document.getElementsByClassName("next-button");
+      xs[0].click();
+      }
+  }
+
+
+  $('html').bind('keypress', function(e)
+  {
+     if(e.keyCode == 13)
+  {
+        check();
+        return false;
+  }
+  });
+
+</script>
+{% endblock %}
+
+
+{% block styles %}
+<style type="text/css">
+  .answer  {
+  width: 25%;
+  }
+  .answerok {
+  width:20%;
+  background-color:green;
+  color:white;
+  float:right;
+  text-align:center;
+  }
+  .answerfalse {
+  width:20%;
+  background-color:red;
+  color:white;
+  float:right;
+  text-align:center;
+  }
+
+  .info {
+  text-align:left;
+  width: 80%;
+  margin-left:auto;
+  margin-right:auto;
+  }
+
+  .info th {
+  text-decoration: underline;
+  }
+
+  .info td {
+  font-family:Arial,Verdana,sans-serif;
+  font-size:1em;
+  }
+
+  .info .lhs {
+  font-family:Arial,Verdana,sans-serif;
+  font-size:1em;
+  width: 100px;
+  text-align:center;
+  }
+
+  .info .rhs {
+  font-family:Arial,Verdana,sans-serif;
+  font-size:1em;
+  text-align:center;
+  }
+
+
+</style>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Evaluierung
+{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+      table, th, td  {
+          text-align:center;
+          width:20px;
+      }
+      .left {
+          text-align:left;
+      }
+      .right {
+          text-align:right;
+      }
+      .firstLine{
+          border-bottom: 2px solid black;
+      }
+</style>
+
+<div class="header well well-lg">
+  <center><p>Ihre Angaben werden vertraulich behandelt.</p></center>
+</div>
+
+<div class="header well well-lg">
+
+  <table class="tableRelease" style="width:100%">
+    <thead class="space">
+      <tr>
+        <th class="left firstLine">Ich bin jemand, der...</th>
+        <th colspan="5" class="left firstLine">Trifft überhaupt nicht zu</th>
+        <th colspan="3" class="right firstLine">Trifft voll zu</th>
+      </tr>
+    </thead>
+    {% for field in form %}
+    <tr>
+      <td class="left">{{field.label_tag}}{{field.errors}}</td>
+      <td></td>
+      <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+  function sort(a, b) {
+  return (a.innerHTML > b.innerHTML) ? 1 : -1;
+  }
+  $('#id_country option').sort(sort).appendTo('#id_country');
+</script>
+
+{% endblock %}
