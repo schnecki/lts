@@ -30,10 +30,15 @@ SECRET_KEY = 'm632ehh7x5avbjql)hdtfx5=b#bsflz9-dtmmw$b$t%l6s8-yt'
 # postgres://USER:PASSWORD@HOST:PORT/NAME
 # mysql://USER:PASSWORD@HOST:PORT/NAME
 
+
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+        # default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+        default='postgres://zwgtnottwqmeyw:9906a8ec9c65d50c846aa2cf3f6393ef570cfa8dda2e94063c986f42a9f5c1ac@ec2-54-83-205-71.compute-1.amazonaws.com:5432/d8oko3tvj46avv'
+
     )
+
+
 }
 
 # AUTH_LEVEL:
