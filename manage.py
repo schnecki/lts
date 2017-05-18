@@ -1,14 +1,8 @@
 #!/usr/bin/env python
 import os
 import sys
-import subprocess
-
-subprocess.call(["otree", "resetdb"])
-
 
 if __name__ == "__main__":
-    subprocess.call(["otree", "resetdb"])
-
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
     from otree.management.cli import execute_from_command_line
