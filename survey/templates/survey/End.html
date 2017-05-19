@@ -1,0 +1,33 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Info
+{% endblock %}
+
+{% block content %}
+
+<div class="header well well-lg">
+
+    <h3 class="panel-sub-heading">
+      Durchführungsphase beendet
+    </h3>
+<p>
+Die Durchführungsphase ist nun zu Ende. Es folgt die Befragungsphase. Erst nach
+Ende der Befragungsphase erhalten Sie die Darstellung Ihres gesamten Verdienstes.
+</p>
+</div>
+
+
+<!--
+Documentation on how to write a django template here:
+https://docs.djangoproject.com/en/1.8/ref/templates/language/
+
+Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
+http://getbootstrap.com/components/
+
+-->
+
+    {% next_button %}
+
+{% endblock %}

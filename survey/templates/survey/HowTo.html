@@ -1,0 +1,64 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Ihre Evaluierung
+{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+      textarea {
+          max-width:100%;
+          min-width:100%;
+      }
+</style>
+
+
+<div class="header well well-lg">
+  <center><p>Ihre Angaben werden vertraulich behandelt.</p></center>
+</div>
+
+<div class="header well well-lg">
+
+  Wie sind Sie bei Ihren Entscheidungen zur Auftragsfreigabe vorgegangen? (mind. 200 Zeichen)
+  <ol>
+  <li>Beschreiben Sie allgemein Ihr Vorgehen.</li>
+  <li>Was war für Sie die zentrale Information um Aufträge freizugeben?</li>
+  <li>Gab es Überraschungen bei der Aufgabe?</li>
+  <li>Haben Sie Ihre Logik im Laufe der Durchführungsphase geändert? Wenn ja/nein, weshalb?</li>
+  </ol>
+
+  {{ form.how_to }}
+
+</div>
+
+<button class="btn btn-primary btn-large btn-primary" onclick="check()" type="button">Weiter</button>
+
+<div style="visibility:hidden;">
+   {% next_button %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function check() {
+    var txt = document.getElementById('id_how_to').value;
+
+    if (txt.length < 200) {
+       alert('Bitte erkläre mit mind. 200 Zeichen dein Vorgehen.');
+       return false;
+    } else {
+       var xs = document.getElementsByClassName("next-button");
+       xs[0].click();
+    }
+  }
+
+  function sort(a, b) {
+      return (a.innerHTML > b.innerHTML) ? 1 : -1;
+  }
+  $('#id_country option').sort(sort).appendTo('#id_country');
+</script>
+
+{% endblock %}

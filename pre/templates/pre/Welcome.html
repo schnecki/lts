@@ -1,0 +1,26 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Willkommen zum Experiment
+{% endblock %}
+
+{% block content %}
+
+<div class="info">
+  <center><p>Ihre Angaben werden vertraulich behandelt. Mit einem Klick auf
+  'Weiter' beginnen Sie die Testaufgabenphase.</p></center>
+</div>
+
+<!--
+Documentation on how to write a django template here:
+https://docs.djangoproject.com/en/1.8/ref/templates/language/
+
+Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
+http://getbootstrap.com/components/
+
+-->
+
+    {% next_button %}
+
+{% endblock %}

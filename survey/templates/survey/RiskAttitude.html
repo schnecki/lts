@@ -1,0 +1,45 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Evaluierung
+{% endblock %}
+
+{% block content %}
+<div class="header well well-lg">
+  <center><p>Ihre Angaben werden vertraulich behandelt.</p></center>
+</div>
+
+<div class="header well well-lg">
+
+  Wie schätzen Sie sich persönlich ein: Sind Sie im allgemeinen ein risikobereiter
+  Mensch oder versuchen Sie, Risiken zu vermeiden? <br /><br />
+
+  Antworten Sie bitte anhand der folgenden Skala. Der Wert 0 bedeutet: gar nicht
+  risikobereit. Der Wert 10 bedeutet: sehr risikobereit. Mit den Werten dazwischen
+  können Sie Ihre Einschätzung abstufen. <br /><br />
+
+    <table style="width:100%;">
+      <tr>
+        <td style="text-align:center;"> gar nicht risikobereit </td>
+        <td style="width:40%;">{{ form.risk }}</td>
+        <td style="text-align:center;"> sehr risikobereit</td>
+      </tr>
+    </table>
+</div>
+
+{% next_button %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+  function sort(a, b) {
+  return (a.innerHTML > b.innerHTML) ? 1 : -1;
+  }
+  $('#id_country option').sort(sort).appendTo('#id_country');
+</script>
+
+{% endblock %}

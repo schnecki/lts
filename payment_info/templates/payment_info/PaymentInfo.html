@@ -1,0 +1,36 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Vielen Dank für Ihre Teilnahme
+{% endblock %}
+
+{% block content %}
+
+
+<div class="header well well-lg">
+  <h3>Auszahlung</h3>
+  <p>
+    Bitte schreiben Sie den Auszahlungswert in Ihre Quittung.<br /><br />
+
+    Gesamtkosten: {{ sum_costs }} <br />
+    Ihre Auszahlung: {{ payment }}
+  </p>
+</div>
+
+
+<div class="header well well-lg">
+  <h3>Ende</h3>
+  <p>
+    Die Auszahlung erfolgt im Anschluss von einer dritten Person. Bitte nehmen Sie zur
+    Auszahlung die Quittung und Ihr Nummernkärtchen mit. Bitte warten Sie am Sitzplatz
+    bis Sie aufgerufen werden.
+  </p>
+</div>
+
+
+{% endblock %}
+
+{% block form %}
+
+{% endblock %}

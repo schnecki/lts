@@ -1,0 +1,155 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% load app_filters %}
+
+{% block title %}
+Freigabe von Aufträgen für den {{ current_day | get_date }}
+{% endblock %}
+
+
+{% block content %}
+
+<style type="text/css">
+      table, th, td  {
+          text-align:center;
+      }
+      .rush {
+        font-family:Arial,Verdana,sans-serif;
+        font-size:1em;
+        color:red;
+      }
+      .last_week{
+        background-color: rgba(220,199,218,0.3);
+      }
+</style>
+
+{% include "global/Header.html" %}
+
+{{ form.orders.errors }}
+
+<div class="header well well-lg">
+
+  <center><h3>Auftragsbuch</h3></center>
+
+  <table class="tableRelease" style="width:100%">
+    <thead>
+      <tr>
+        <th>Auftragsnr</th>
+        <th>Menge</th>
+        <!-- <th>order_id             </th> -->
+        <!-- <th>participant_id       </th> -->
+        <th>Auftragseingang</th>
+        <th>Zugesagter Liefertermin</th>
+        <!-- <th>full_processing_time </th> -->
+        <!-- <th>time_until_finished  </th> -->
+        <!-- <th>release_date         </th> -->
+        <th>Auftrag Freigeben</th>
+      </tr>
+    </thead>
+
+    {% for order in last_week_orders %}
+    <tr {% if order|is_rushorder %}
+        class="rush"
+        {% endif %}
+        >
+      <td>{{ order.nr }}</td>
+      <td>1</td>
+      <!-- <td>{{ order.order_id }}</td> -->
+      <!-- <td> {{ order.participant_id }}       </td> -->
+      <td> {{ order.arrival | get_date_str:current_day }} ({{order.arrival | get_date }}) </td>
+      <td> {{ order.due | get_date_str:current_day }} ({{order.due | get_date}}) </td>
+      <!-- <td> {{ order.full_processing_time }} </td> -->
+      <!-- <td> {{ order.time_until_finished }}  </td> -->
+      <!-- <td> {{ order.release_date }}         </td> -->
+      <td>
+        <input type="checkbox" id="order_{{order.order_id}}" name="order_{{order.order_id}}" value="True" disabled checked>
+      </td>
+    </tr>
+    {% endfor %}
+
+    {% for order in releasable_orders %}
+    <tr {% if order|is_rushorder %}
+        class="rush"
+        {% endif %}
+        >
+      <td>{{ order.nr }}</td>
+      <td>1</td>
+      <!-- <td>{{ order.order_id }}</td> -->
+      <!-- <td> {{ order.participant_id }}       </td> -->
+      <td> {{ order.arrival | get_date_str:current_day }} ({{order.arrival | get_date }}) </td>
+      <td> {{ order.due | get_date_str:current_day }} ({{order.due | get_date}}) </td>
+      <!-- <td> {{ order.full_processing_time }} </td> -->
+      <!-- <td> {{ order.time_until_finished }}  </td> -->
+      <!-- <td> {{ order.release_date }}         </td> -->
+      <td>
+        <input type="checkbox" id="order_{{order.order_id}}" name="order_{{order.order_id}}" value="True"
+               {% if is_last_week_release_round %}
+                 disabled
+               {% endif %}
+               >
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<button class="btn btn-primary btn-large btn-primary" onclick="check()" type="button">Weiter</button>
+<div style="visibility:hidden">
+  {% next_button %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  function check() {
+    var last_week = {{ is_last_week_release_round|json }};
+    var any = false;
+    var ordIds = {{ releasable_orders_ids|json }};
+    var lastWeekOrdIds = {{ last_week_order_ids|json }};
+
+    if (last_week) {
+      lastWeekOrdIds.forEach(function(ordId) {
+        document.getElementById("order_"+ordId).disabled = false;
+      });
+    }
+
+    ordIds.forEach(function(ordId) {
+      console.log(ordId);
+      var d = document.getElementById("order_"+ordId).checked;
+      console.log(d);
+      if (d) {
+         any = true;
+      }
+    });
+
+    if (!any && !last_week){
+      var r = confirm("Keine Aufträge ausgewählt! Trotzdem weiter?");
+      if (r == true) {
+        var xs = document.getElementsByClassName("next-button");
+        xs[0].click();
+      }
+    } else {
+      var xs = document.getElementsByClassName("next-button");
+      xs[0].click();
+    }
+
+    lastWeekOrdIds.forEach(function(ordId) {
+          document.getElementById("order_"+ordId).disabled = true;
+    });
+  }
+
+  $('html').bind('keypress', function(e)
+  {
+     if(e.keyCode == 13)
+  {
+        check();
+        return false;
+  }
+  });
+
+  document.body.style.background = "#ffeaea";
+
+
+  hidecosts();
+</script>
+{% endblock %}

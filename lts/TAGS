@@ -1,0 +1,108 @@
+
+models.py,485
+class Period(24,559
+    def __str__(32,890
+class Constants(36,1000
+class Order(90,2979
+    class Meta:Meta116,4733
+    def set_release(120,4897
+    def get_order_id(123,4983
+    def set_participant_id(126,5044
+    def __str__(129,5143
+class Particip(138,5609
+    def __str__(149,6066
+class Membership(154,6239
+class Costs(161,6483
+    def __str__(166,6706
+class Subsession(171,6843
+    def before_session_starts(174,6939
+class Group(358,15370
+class Player(362,15409
+
+_builtin/__init__.py,151
+class Page(8,131
+    def z_autocomplete(9,160
+class WaitPage(15,318
+    def z_autocomplete(16,355
+class Bot(21,474
+    def z_autocomplete(22,501
+
+helper_functions.py,496
+def is_rush_order(12,308
+def sort_order_list_key(18,477
+def sort_order_list_order_book(23,630
+def sort_order_order_book(28,760
+def sort_order_list(35,971
+def get_releasable_orders(42,1187
+def is_test_phase(66,2035
+def get_released_orders(70,2096
+def get_all_orders(75,2307
+def get_finished_orders(81,2502
+def get_processing_orders(87,2693
+def get_fgi_orders(94,2916
+def get_last_known_flow_time(102,3181
+def get_sum_costs(113,3647
+def process_order(128,4117
+def simulate(153,5062
+
+views.py,755
+def skip_rest_of_test(12,281
+class OrderRelease(20,551
+    def is_displayed(27,718
+    def post(30,789
+    def vars_for_template(61,1861
+    def before_next_page(118,4730
+class ResultsWaitPage(124,4868
+class Results(128,4916
+    def is_displayed(132,4970
+    def vars_for_template(136,5043
+    def post(169,6597
+    def before_next_page(181,6976
+class TimePage(213,8012
+    def is_displayed(215,8037
+    def vars_for_template(218,8108
+    def before_next_page(227,8422
+class EndPage(232,8546
+    def is_displayed(234,8570
+class WaitPageEndTest(238,8705
+    def is_displayed(240,8741
+class Info(244,8881
+    def is_displayed(245,8900
+    def before_next_page(248,9040
+class WelcomeExperiment(255,9215
+    def is_displayed(256,9247
+
+templatetags/app_filters.py,70
+def is_rushorder(9,158
+def get_date_str(14,294
+def get_date(29,645
+
+tests.py,49
+class PlayerBot(7,136
+    def play_round(9,161
+
+flycheck_models.py,485
+class Period(24,559
+    def __str__(32,890
+class Constants(36,1000
+class Order(90,2979
+    class Meta:Meta116,4733
+    def set_release(120,4897
+    def get_order_id(123,4983
+    def set_participant_id(126,5044
+    def __str__(129,5143
+class Particip(138,5609
+    def __str__(149,6066
+class Membership(154,6239
+class Costs(161,6483
+    def __str__(166,6706
+class Subsession(171,6843
+    def before_session_starts(174,6939
+class Group(358,15370
+class Player(362,15409
+
+migrations/__init__.py,0
+
+templatetags/__init__.py,0
+
+__init__.py,0

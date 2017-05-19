@@ -1,0 +1,28 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Kosten werden zurückgesetzt
+{% endblock %}
+
+{% block content %}
+
+<div class="header well well-lg">
+Die Kosten werden nun auf 0 zurückgesetzt. Die auszahlungsrelevante Durchführungsphase beginnt.
+Beachten Sie dass die freigegeben Aufträge von vor 10 Tagen bereits im System sind
+und dieses eventuell auch schon wieder verlassen haben.
+</div>
+
+
+<!--
+Documentation on how to write a django template here:
+https://docs.djangoproject.com/en/1.8/ref/templates/language/
+
+Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
+http://getbootstrap.com/components/
+
+-->
+
+    {% next_button %}
+
+{% endblock %}

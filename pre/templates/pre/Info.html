@@ -1,0 +1,28 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+      Probephase
+{% endblock %}
+
+{% block content %}
+
+<div class="info">
+Mit einem Klick auf 'Weiter' beginnen Sie die Probephase. Alle Entscheidungen in
+der Probephase sind <b>NICHT</b> auszahlungsrelevant und haben somit keinen
+Einfluss auf Ihr gesamtes Einkommen vom Experiment.
+</div>
+
+
+<!--
+Documentation on how to write a django template here:
+https://docs.djangoproject.com/en/1.8/ref/templates/language/
+
+Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
+http://getbootstrap.com/components/
+
+-->
+
+    {% next_button %}
+
+{% endblock %}

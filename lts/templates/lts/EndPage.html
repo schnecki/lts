@@ -1,0 +1,74 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Ende des Experiments
+{% endblock %}
+
+
+{% block content %}
+
+<div class="header well well-lg">
+
+    <h3 class="panel-sub-heading">
+        Ende des Experiments
+    </h3>
+<p>
+    Bitte sitzen bleiben, warten bis alle fertig sind und dann den Anweisungen
+    folgen.
+</p>
+
+<p>
+    Danke
+</p>
+
+</div>
+
+
+<!--
+Documentation on how to write a django template here:
+https://docs.djangoproject.com/en/1.8/ref/templates/language/
+
+Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
+http://getbootstrap.com/components/
+
+  -->
+    {% next_button %}
+{% endblock %}
+
+
+{% block styles %}
+
+    <!-- <\!-- define a style -\-> -->
+    <!-- <style type="text/css"> -->
+    <!--     .bid-slider { -->
+    <!--         margin: 1.5em auto; -->
+    <!--         width: 70%; -->
+    <!--     } -->
+    <!-- </style> -->
+
+    <!-- <\!-- or reference a static file -\-> -->
+    <!-- <link href="{% static "my_app/style.css" %}" rel="stylesheet"> -->
+
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- <\!-- define a script -\-> -->
+
+    <!-- <script> -->
+    <!--     var input = $('#id_bid_amount'); -->
+
+    <!--     $('.bid-slider').slider({ -->
+    <!--         min: 0, -->
+    <!--         max: 100, -->
+    <!--         slide: function (event, ui) { -->
+    <!--             input.val(ui.value); -->
+    <!--             updateBidValue(); -->
+    <!--         }, -->
+    <!--     }); -->
+    <!-- </script> -->
+
+    <!-- <\!-- or reference a static file -\-> -->
+    <!-- <script src="{% static "my_app/script.js" %}"></script> -->
+{% endblock %}
