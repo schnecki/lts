@@ -14,16 +14,39 @@ class WaitPage(14,311
 class Bot(22,463
     def z_autocomplete(24,490
 
-survey/tests.py,49
-class PlayerBot(6,129
-    def play_round(8,152
-
 survey/views.py,117
 class Demographics(6,141
 class RiskAttitude(16,393
 class Personality(22,484
 class HowTo(27,607
 class End(31,687
+
+survey/tests.py,49
+class PlayerBot(6,129
+    def play_round(8,152
+
+payment_info/models.py,128
+class Constants(14,310
+class Subsession(19,424
+    def before_session_starts(21,459
+class Group(27,561
+class Player(30,595
+
+payment_info/_builtin/__init__.py,150
+class Page(5,92
+    def z_autocomplete(7,121
+class WaitPage(13,273
+    def z_autocomplete(16,311
+class Bot(21,425
+    def z_autocomplete(23,452
+
+payment_info/views.py,59
+class PaymentInfo(8,209
+    def vars_for_template(10,235
+
+payment_info/tests.py,49
+class PlayerBot(6,129
+    def play_round(8,152
 
 lts/models.py,485
 class Period(24,559
@@ -45,11 +68,6 @@ class Subsession(171,6843
 class Group(358,15370
 class Player(362,15409
 
-lts/templatetags/app_filters.py,70
-def is_rushorder(9,158
-def get_date_str(14,294
-def get_date(29,645
-
 lts/_builtin/__init__.py,151
 class Page(8,131
     def z_autocomplete(9,160
@@ -57,10 +75,6 @@ class WaitPage(15,318
     def z_autocomplete(16,355
 class Bot(21,474
     def z_autocomplete(22,501
-
-lts/tests.py,49
-class PlayerBot(7,136
-    def play_round(9,161
 
 lts/helper_functions.py,496
 def is_rush_order(12,308
@@ -107,28 +121,14 @@ class Info(244,8881
 class WelcomeExperiment(255,9215
     def is_displayed(256,9247
 
-payment_info/models.py,128
-class Constants(14,310
-class Subsession(19,424
-    def before_session_starts(21,459
-class Group(27,561
-class Player(30,595
+lts/templatetags/app_filters.py,70
+def is_rushorder(9,158
+def get_date_str(14,294
+def get_date(29,645
 
-payment_info/_builtin/__init__.py,150
-class Page(5,92
-    def z_autocomplete(7,121
-class WaitPage(13,273
-    def z_autocomplete(16,311
-class Bot(21,425
-    def z_autocomplete(23,452
-
-payment_info/tests.py,49
-class PlayerBot(6,129
-    def play_round(8,152
-
-payment_info/views.py,59
-class PaymentInfo(8,209
-    def vars_for_template(10,235
+lts/tests.py,49
+class PlayerBot(7,136
+    def play_round(9,161
 
 pre/models.py,128
 class Constants(14,243
@@ -145,10 +145,6 @@ class WaitPage(15,318
 class Bot(21,474
     def z_autocomplete(22,501
 
-pre/tests.py,49
-class PlayerBot(7,136
-    def play_round(9,161
-
 pre/views.py,286
 class OrderRelease(8,215
     def vars_for_template(10,244
@@ -161,24 +157,28 @@ class Welcome(77,2409
 class WelcomeTestphase(80,2443
 class Test(84,2488
 
-pre/__init__.py,0
-
-pre/migrations/__init__.py,0
+pre/tests.py,49
+class PlayerBot(7,136
+    def play_round(9,161
 
 settings.py,0
 
-payment_info/__init__.py,0
+pre/migrations/__init__.py,0
 
-payment_info/migrations/__init__.py,0
+pre/__init__.py,0
 
-lts/__init__.py,0
+manage.py,0
 
 lts/migrations/__init__.py,0
 
 lts/templatetags/__init__.py,0
 
-flycheck_settings.py,0
+lts/__init__.py,0
 
-survey/__init__.py,0
+payment_info/migrations/__init__.py,0
+
+payment_info/__init__.py,0
 
 survey/migrations/__init__.py,0
+
+survey/__init__.py,0
