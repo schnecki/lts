@@ -36,15 +36,14 @@ class Period(models.Model):
 class Constants(BaseConstants):
     name_in_url = 'lts'
     players_per_group = None
-    test_round_ID = -1          # ID for period of test rounds
+    test_round_ID = -3          # ID for first period of test rounds
     release_last_week_ID = 0    # ID for last weeks release
 
 
     # Test data
-    num_test_orders = 11        # nr of test orders taken from end of demand stream
-    test_date_move = 250        # nr of days to substract from dates for test
-    max_test_rounds = 10        # maximum number of test rounds
-    test_timeout = 30           # seconds until test is over
+    test_round_length = 3       # round to play for each test round
+    max_test_rounds = 15        # maximum number of test rounds
+    test_timeout = 300          # seconds until test is over
 
     test_period = 1
 
@@ -63,9 +62,6 @@ class Constants(BaseConstants):
 
     rush_order_days = 11        # iff order.due-order.arrival <= rush_order_days
                                 # then the order is an rush order
-
-
-    # ["id","start","end"]
 
 
 class Order(models.Model):
@@ -103,6 +99,11 @@ class Order(models.Model):
 
     def get_order_id(self):
         return self.order_id
+
+    def is_rush_order(self):
+        "Returns a Boolean weather this order is a rush order or not."
+        return self.due - self.arrival <= Constants.rush_order_days
+
 
     def set_participant_id(self, participant_id):
         self.participant_id = participant_id
@@ -155,8 +156,13 @@ class Subsession(BaseSubsession):
     def before_session_starts(self):
 
         if self.round_number == 1:
-            p = Period(Constants.test_round_ID, 1, 10) # must have id 0
-            p.save()
+            testStart = 1
+            testEnd = 10
+            for i in range(Constants.test_round_ID,0):
+                p = Period(i, testStart, testEnd) # must have id 0
+                p.save()
+                testStart += 10
+                testEnd += 10
             p = Period(Constants.release_last_week_ID, -9, 0) # must have id -1
             p.save()
             file_per = "./doc/data/Perioden.csv"
@@ -167,15 +173,9 @@ class Subsession(BaseSubsession):
                     periods.append(Period(nr=int(p.get('id')),
                                           start=int(p.get('start')),
                                           end=int(p.get('end'))))
-                    periods = sorted(periods,key=attrgetter('nr')) # sort by nr
+                    periods = sorted(periods, key=attrgetter('nr')) # sort by nr
                 for period in periods:
                     period.save()   # save to db
-
-                if debug:
-                    print("Periods are as follows:")
-                    for period in periods:
-                        print(period)
-
 
         # set is test round
         test_round = False
@@ -196,7 +196,7 @@ class Subsession(BaseSubsession):
             csts.save()
             p.costs = csts
             if test_round:
-                p.period = Period.objects.get(nr=Constants.test_round_ID)
+                p.period = Period.objects.get(nr=(self.round_number % Constants.test_round_ID)-1)
             elif release_last_week:
                 p.period = Period.objects.get(nr=Constants.release_last_week_ID)
             else:
@@ -281,14 +281,22 @@ class Subsession(BaseSubsession):
                     # load starting wip
                     # start_wip = self.session.config['start_wip']
 
+                    num_test_orders=self.session.config['num_test_orders']
+                    test_date_arr_move=self.session.config['test_date_arr_move']
+                    test_date_due_move=self.session.config['test_date_due_move']
+
                     # add demand to player
                     if test_round:
                         demandsTest.reverse()
-                        demandsTest = demandsTest[:Constants.num_test_orders]
+                        demandsTest = demandsTest[:num_test_orders]
                         demandsTest.reverse()
                         for d in demandsTest:
-                            d.arrival -= Constants.test_date_move
-                            d.due -= Constants.test_date_move
+                            d.arrival -= test_date_arr_move
+                            if d.is_rush_order():
+                                test_date_due_rush_move=self.session.config['test_date_due_rush_move']
+                                d.due -= test_date_due_rush_move
+                            else:
+                                d.due -= test_date_due_move
 
                     for o in demandsTest:
                         o.set_participant_id(p.participant.id)

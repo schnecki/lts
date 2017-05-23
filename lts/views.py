@@ -137,6 +137,7 @@ class Results(Page):
         "This method defines the variables which are handed over to the html file."
 
         sum_costs_ob = get_sum_costs(self)
+        reset_test_phase = is_test_phase(self) and self.player.period.nr == -1
 
 
         return {'releasable_orders': get_releasable_orders(self),
@@ -154,6 +155,8 @@ class Results(Page):
                 'sum_wip': sum_costs_ob.wip,
                 'sum_fgi': sum_costs_ob.fgi,
                 'sum_bo': sum_costs_ob.bo,
+
+                'reset_test_phase': reset_test_phase,
 
                 'period': self.player.period,
                 'orders': self.player.particip.orders.all(),
@@ -183,7 +186,8 @@ class Results(Page):
         sum_costs_ob = get_sum_costs(self)
         sum_costs = sum_costs_ob.wip + sum_costs_ob.fgi + sum_costs_ob.bo
 
-        if is_test_phase(self):
+
+        if is_test_phase(self) and self.player.period.nr == -1:
             # reset all orders
             for o in get_all_orders(self):
                 o.nr = None

@@ -9,8 +9,6 @@ import dill as pickle                     # for pickling functions
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-print("BASE_DIR: ", BASE_DIR)
-
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
 if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
@@ -66,7 +64,7 @@ LANGUAGE_CODE = 'de'
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
 
-# STatic files
+# Static files
 STATIC_URL = '/static/'
 
 
@@ -117,8 +115,6 @@ SESSION_CONFIG_DEFAULTS = {
     'mturk_hit_settings': mturk_hit_settings,
 }
 
-MAKE_SCREENSHOTS = False
-
 SESSION_CONFIGS = [
     {
         'name': 'lts1',
@@ -130,17 +126,12 @@ SESSION_CONFIGS = [
                          'survey',
                          'payment_info'
         ],
-        'file_dem': "./doc/data/KoKoNoRo.csv" if (not MAKE_SCREENSHOTS) else "./doc/data/KoKoNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/KoKoNoRo.csv",
         'start_flow_time': 6.75,
         'flow_time_last_year': 6.75,
         'start_wip_count': 2,
-        # 'start_wip': [(1, 1, -81, 0, 4.5, 0, -9, False, -4.5, 1),
-        #               (2, 2, -81, 0, 4.5, 0, -9, False,   0, 1),
-        #              ] if (not MAKE_SCREENSHOTS) else [],
+
         'payment_fun': pickle.dumps(lambda csts: 4+10*1/(1+csts)),
-        # start wip tuple is: (nr, order_id, arrival, due, full_processing_time,
-        # time_until_finished, release_date, is_processing, fgi_arrived_date,
-        # sent_date)
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -153,6 +144,12 @@ SESSION_CONFIGS = [
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
 
+        # test setup
+        'num_test_orders': 12,  # nr of test orders taken from end of demand stream
+        'test_date_arr_move': 220, # nr of days to substract from arr date for test
+        'test_date_due_move': 270, # nr of days to substract from due date for test
+        'test_date_due_rush_move': 220, # nr of days to subtract for rush order
+                                         # from due date
 
     },
     {
@@ -165,20 +162,11 @@ SESSION_CONFIGS = [
                          'survey',
                          'payment_info'
         ],
-        'file_dem': "./doc/data/KoVarNoRo.csv" if (not MAKE_SCREENSHOTS) else  "./doc/data/KoVarNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/KoVarNoRo.csv",
         'start_flow_time': 8.10,
         'flow_time_last_year': 13.49,
         'start_wip_count': 4,
-        # 'start_wip':   [(1, 1, -91, 0, 7.252813071, 0, -9, False, -1.747186929, 1),
-        #                 (2, 2, -91, 0, 1.690540629, 0, -9, False, -0.0566463   , 1),
-        #                 (3, 3, -81,10, 4.899126252, 3.842479952, -9, True, None, None),
-        #                 (4, 4, -81,10, 1.238415534, 1.238415534, -9, False, None, None)
-        #                ] if (not MAKE_SCREENSHOTS) else [],
         'payment_fun': pickle.dumps(lambda csts: 4+10*490/csts),
-
-        # start wip tuple is: (nr, order_id, arrival, due, full_processing_time,
-        # time_until_finished, release_date, is_processing, fgi_arrived_date,
-        # sent_date)
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -191,6 +179,12 @@ SESSION_CONFIGS = [
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
 
+        # test setup
+        'num_test_orders': 12,  # nr of test orders taken from end of demand stream
+        'test_date_arr_move': 220, # nr of days to substract from arr date for test
+        'test_date_due_move': 270, # nr of days to substract from due date for test
+        'test_date_due_rush_move': 220, # nr of days to subtract for rush order
+                                         # from due date
 
     },
     {
@@ -202,20 +196,12 @@ SESSION_CONFIGS = [
                          'lts',
                          'survey',
                          'payment_info'],
-        'file_dem': "./doc/data/KoKoRo.csv" if (not MAKE_SCREENSHOTS) else "./doc/data/KoKoNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/KoKoRo.csv",
         'start_flow_time': 6.75,
         'flow_time_last_year': 13.01,
         'start_wip_count': 4,
-        # 'start_wip':   [(1, 1, -91, 0, 4.5, 0, -9, False, -4.5, 1),
-        #                 (2, 2, -91, 0, 4.5, 0, -9, False,    0, 1),
-        #                 (3, 3, -81,10, 4.5, 3.5, -9, True, None, None),
-        #                 (4, 4, -81,10, 4.5, 4.5, -9, False, None, None)
-        #                ] if (not MAKE_SCREENSHOTS) else [],
-        'payment_fun': pickle.dumps(lambda csts: 4+10*440/csts),
 
-        # start wip tuple is: (nr, order_id, arrival, due, full_processing_time,
-        # time_until_finished, release_date, is_processing, fgi_arrived_date,
-        # sent_date)
+        'payment_fun': pickle.dumps(lambda csts: 4+10*440/csts),
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -228,6 +214,12 @@ SESSION_CONFIGS = [
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
 
+        # test setup
+        'num_test_orders': 12,  # nr of test orders taken from end of demand stream
+        'test_date_arr_move': 220, # nr of days to substract from arr date for test
+        'test_date_due_move': 270, # nr of days to substract from due date for test
+        'test_date_due_rush_move': 220, # nr of days to subtract for rush order
+                                         # from due date
 
     },
     {
@@ -239,19 +231,11 @@ SESSION_CONFIGS = [
                          'lts',
                          'survey',
                          'payment_info'],
-        'file_dem': "./doc/data/SaiKonNoRo.csv" if (not MAKE_SCREENSHOTS) else "./doc/data/SaiKonNoRoSCREENSHOT.csv",
+        'file_dem': "./doc/data/SaiKonNoRo.csv",
         'start_flow_time': 6.75,
         'flow_time_last_year': 17.11,
         'start_wip_count': 3,
-        # 'start_wip':  [(1, 1, -91, 0, 4.5, 0, -9, False, -4.5, 1),
-        #                (2, 2, -91, 0, 4.5, 0, -9, False,    0, 1),
-        #                (3, 3, -81,10, 4.5,3.5,-9, True, None, None)
-        #               ] if (not MAKE_SCREENSHOTS) else [],
         'payment_fun': pickle.dumps(lambda csts: 4+10*845/csts),
-
-        # start wip tuple is: (nr, order_id, arrival, due, full_processing_time,
-        # time_until_finished, release_date, is_processing, fgi_arrived_date,
-        # sent_date)
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -263,6 +247,13 @@ SESSION_CONFIGS = [
         'intro_end_csts_wip': 5,
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
+
+        # test setup
+        'num_test_orders': 11,  # nr of test orders taken from end of demand stream
+        'test_date_arr_move': 210, # nr of days to substract from arr date for test
+        'test_date_due_move': 250, # nr of days to substract from due date for test
+        'test_date_due_rush_move': 220, # nr of days to subtract for rush order
+                                         # from due date
 
 
     },

@@ -8,17 +8,10 @@ from functools import cmp_to_key, reduce
 
 ########## Functions / Procedures
 
-
-def is_rush_order(order):
-    "Returns a Boolean weather this order is a rush order or not."
-
-    return order.due - order.arrival <= models.Constants.rush_order_days
-
-
 def sort_order_list_key(x):
     "Function which defines the order for the list of orders."
 
-    return (not is_rush_order(x),x.release_date,x.order_id)
+    return (not x.is_rush_order(),x.release_date,x.order_id)
 
 def sort_order_list_order_book(x):
     "Function which defines the order for the list of orders."

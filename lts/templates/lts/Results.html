@@ -9,9 +9,10 @@
 
     {% include "global/Header.html" %}
 
-    <!-- <div style="visibility:hidden"> -->
-      {% next_button %}
-    <!-- </div> -->
+<div style="btn btn-primary btn-large btn-primary">
+  {% next_button %}
+</div>
+
 {% endblock %}
 
 
@@ -20,10 +21,11 @@
 document.getElementById('hideshowcosts').style.display='none';
 
 
+var reset_test_phase = {{ reset_test_phase|json }}
 var secs = {{ seconds_left_test|json }}
-if (secs > 0) {
+if (secs > 0 && reset_test_phase) {
   var xs = document.getElementsByClassName("next-button");
-  xs[0].innerHTML='Zurück';
+  xs[0].innerHTML='Neue Runde der Testphase starten';
 }
 
 
