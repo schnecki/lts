@@ -32,7 +32,6 @@ SECRET_KEY = 'm632ehh7x5avbjql)hdtfx5=b#bsflz9-dtmmw$b$t%l6s8-yt'
 # postgres://USER:PASSWORD@HOST:PORT/NAME
 # mysql://USER:PASSWORD@HOST:PORT/NAME
 
-
 DATABASES = {
     'default': dj_database_url.config(
         default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')

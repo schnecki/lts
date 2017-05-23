@@ -45,16 +45,14 @@ class Constants(BaseConstants):
     test_date_move = 250        # nr of days to substract from dates for test
     max_test_rounds = 10        # maximum number of test rounds
     test_timeout = 30           # seconds until test is over
-    p = Period(test_round_ID, 1, 10) # must have id 0
-    p.save()
+
     test_period = 1
 
     # rounds
     exp_rounds = 24             # number of experiment rounds
 
     # last weeks release round
-    p = Period(release_last_week_ID, -9, 0) # must have id -1
-    p.save()
+
 
 
     # plus 1 for round in which releases of last week are given
@@ -69,22 +67,7 @@ class Constants(BaseConstants):
 
 
     # ["id","start","end"]
-    file_per = "./doc/data/Perioden.csv"
 
-    with open(file_per, 'r') as csvfile:
-        periods = []
-        for p in list(csv.DictReader(csvfile, dialect='excel', delimiter=';')):
-            periods.append(Period(nr=int(p.get('id')),
-                                  start=int(p.get('start')),
-                                  end=int(p.get('end'))))
-            periods = sorted(periods,key=attrgetter('nr')) # sort by nr
-        for period in periods:
-            period.save()   # save to db
-
-        if debug:
-            print("Periods are as follows:")
-            for period in periods:
-                print(period)
 
 
 class Order(models.Model):
@@ -172,7 +155,32 @@ class Subsession(BaseSubsession):
     "Multiple subsession (rounds) combine to one session"
 
     def before_session_starts(self):
+# by ph
 
+        if self.round_number == 1:
+                p = Period(Constants.test_round_ID, 1, 10) # must have id 0
+                p.save()
+                p = Period(Constants.release_last_week_ID, -9, 0) # must have id -1
+                p.save()
+                file_per = "./doc/data/Perioden.csv"
+
+                with open(file_per, 'r') as csvfile:
+                    periods = []
+                    for p in list(csv.DictReader(csvfile, dialect='excel', delimiter=';')):
+                        periods.append(Period(nr=int(p.get('id')),
+                                              start=int(p.get('start')),
+                                              end=int(p.get('end'))))
+                        periods = sorted(periods,key=attrgetter('nr')) # sort by nr
+                    for period in periods:
+                        period.save()   # save to db
+
+                    if debug:
+                        print("Periods are as follows:")
+                        for period in periods:
+                            print(period)
+
+
+# end by ph
         # set is test round
         test_round = False
         release_last_week = False

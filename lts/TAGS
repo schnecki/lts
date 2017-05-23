@@ -19,11 +19,14 @@ class Subsession(171,6843
 class Group(358,15370
 class Player(362,15409
 
+<<<<<<< HEAD
 templatetags/app_filters.py,70
 def is_rushorder(9,158
 def get_date_str(14,294
 def get_date(29,645
 
+=======
+>>>>>>> master
 _builtin/__init__.py,151
 class Page(8,131
     def z_autocomplete(9,160
@@ -32,10 +35,13 @@ class WaitPage(15,318
 class Bot(21,474
     def z_autocomplete(22,501
 
+<<<<<<< HEAD
 tests.py,49
 class PlayerBot(7,136
     def play_round(9,161
 
+=======
+>>>>>>> master
 helper_functions.py,496
 def is_rush_order(12,308
 def sort_order_list_key(18,477
@@ -81,6 +87,18 @@ class Info(244,8881
 class WelcomeExperiment(255,9215
     def is_displayed(256,9247
 
+<<<<<<< HEAD
+=======
+templatetags/app_filters.py,70
+def is_rushorder(9,158
+def get_date_str(14,294
+def get_date(29,645
+
+tests.py,49
+class PlayerBot(7,136
+    def play_round(9,161
+
+>>>>>>> master
 flycheck_models.py,485
 class Period(24,559
     def __str__(32,890
@@ -101,8 +119,16 @@ class Subsession(171,6843
 class Group(358,15370
 class Player(362,15409
 
+<<<<<<< HEAD
 __init__.py,0
 
 migrations/__init__.py,0
 
 templatetags/__init__.py,0
+=======
+migrations/__init__.py,0
+
+templatetags/__init__.py,0
+
+__init__.py,0
+>>>>>>> master
