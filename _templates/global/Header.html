@@ -1,6 +1,8 @@
 {% load otree_tags staticfiles %}
 {% load app_filters %}
+{% load staticfiles %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 
 <div class="header well well-lg">
   <h3 class="panel-sub-heading">
@@ -10,10 +12,10 @@
 
 {% if is_last_week_release_round %}
 <div class="info info-warning">
-   Dies ist die Vorbereitungsphase. Unten sehen Sie die <b>von vor 10 Tagen
-   freigegebenen Aufträge</b>. Entnehmen Sie die Informationen aus dem Auftragsbuch
-   und klicken Sie auf 'Weiter' um die Rückmeldung für diese Entscheidung zu
-   erhalten.
+   Dies ist die Vorbereitungsphase. Unten sehen Sie die <b>von vor 10 Tagen, also
+   am {{current_day | get_date }}, freigegebenen Aufträge</b>. Entnehmen Sie die
+   Informationen aus dem Auftragsbuch und klicken Sie auf 'Weiter' um die
+   Rückmeldung für diese Entscheidung zu erhalten.
 </div>
 {% else %}
 

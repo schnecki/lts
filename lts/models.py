@@ -50,11 +50,15 @@ class Constants(BaseConstants):
     # rounds
     exp_rounds = 24             # number of experiment rounds
 
-    # last weeks release round
-
-
     # plus 1 for round in which releases of last week are given
     num_rounds = max_test_rounds + 1 + exp_rounds
+
+    # background colors
+    bgcolor_test_phase = "#ffeaff"
+    bgcolor_trial_phase = "#ffeaea"
+    bgcolor_prep_phase = "#eaeaea"
+    bgcolor_exec_phase = "#eaffea"
+    bgcolor_surv_phase = "#eaeaff"
 
     costs_wip = c(5)            # costs for wip per period and order
     costs_fgi = c(5)            # costs for fgi per period and order
@@ -291,12 +295,12 @@ class Subsession(BaseSubsession):
                         demandsTest = demandsTest[:num_test_orders]
                         demandsTest.reverse()
                         for d in demandsTest:
-                            d.arrival -= test_date_arr_move
                             if d.is_rush_order():
                                 test_date_due_rush_move=self.session.config['test_date_due_rush_move']
                                 d.due -= test_date_due_rush_move
                             else:
                                 d.due -= test_date_due_move
+                            d.arrival -= test_date_arr_move
 
                     for o in demandsTest:
                         o.set_participant_id(p.participant.id)

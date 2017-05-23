@@ -29,5 +29,9 @@ if (secs > 0 && reset_test_phase) {
 }
 
 
+  var bgcolor = {{ bgcolor|json }};
+  document.body.style.background = bgcolor;
+
+
 </script>
 {% endblock %}

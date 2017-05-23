@@ -150,8 +150,8 @@ Freigabe von Aufträgen für den {{ current_day | get_date }}
   }
   });
 
-  document.body.style.background = "#ffeaea";
-
+  var bgcolor = {{ bgcolor|json }};
+  document.body.style.background = bgcolor;
 
   hidecosts();
 </script>

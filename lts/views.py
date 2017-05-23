@@ -68,6 +68,7 @@ class OrderRelease(Page):
         releasable_orders_ids = [ x.get_order_id() for x in releasable_orders ]
         sum_costs_ob = get_sum_costs(self)
         last_week_orders = []
+        bgcolor = Constants.bgcolor_exec_phase
         if self.player.release_last_week_round:
             nr = self.player.subsession.session.config['start_wip_count']
             last_week_orders = releasable_orders[:nr]
@@ -75,9 +76,13 @@ class OrderRelease(Page):
             # all_orders = get_all_orders(self)
             # last_week_orders = [o for o in all_orders if
             #                     o.release_date is not None]
+            bgcolor = Constants.bgcolor_prep_phase
+        if is_test_phase(self):
+            bgcolor = Constants.bgcolor_trial_phase
 
-        print("Period: ", self.player.period)
-        print("Particip: ", self.player.particip)
+        # print("Period: ", self.player.period)
+        # print("Particip: ", self.player.particip)
+
 
         return {'releasable_orders': releasable_orders,
                 'releasable_orders_ids': releasable_orders_ids,
@@ -113,6 +118,8 @@ class OrderRelease(Page):
                 'current_day': self.player.period.start-1,
                 'rush_order_days': Constants.rush_order_days,
                 'flow_time_year': self.player.subsession.session.config['flow_time_last_year'],
+
+                'bgcolor': bgcolor,
         }
 
     def before_next_page(self):
@@ -138,6 +145,11 @@ class Results(Page):
 
         sum_costs_ob = get_sum_costs(self)
         reset_test_phase = is_test_phase(self) and self.player.period.nr == -1
+        bgcolor = Constants.bgcolor_exec_phase
+        if self.player.release_last_week_round:
+            bgcolor = Constants.bgcolor_prep_phase
+        elif is_test_phase(self):
+            bgcolor = Constants.bgcolor_trial_phase
 
 
         return {'releasable_orders': get_releasable_orders(self),
@@ -167,6 +179,7 @@ class Results(Page):
                 'sum_costs': sum_costs_ob.wip + sum_costs_ob.fgi + sum_costs_ob.bo,
                 'current_day': self.player.period.end,
                 'flow_time_year': self.player.subsession.session.config['flow_time_last_year'],
+                'bgcolor': bgcolor,
         }
 
     def post(self, request, **kwargs):
@@ -229,7 +242,7 @@ class TimePage(Page):
         }
 
     def before_next_page(self):
-        self.player.particip.test_time_left -= 5
+        self.player.particip.test_time_left -= 6
         self.player.particip.save()
 
 
@@ -263,9 +276,9 @@ class WelcomeExperiment(Page):
 page_sequence = [
     WelcomeExperiment,
     OrderRelease,
-    # TimePage,
+    TimePage,
     Results,
-    ResultsWaitPage,
+    # ResultsWaitPage,
     WaitPageEndTest,
     Info
     # EndPage
