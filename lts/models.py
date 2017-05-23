@@ -54,7 +54,6 @@ class Constants(BaseConstants):
     # last weeks release round
 
 
-
     # plus 1 for round in which releases of last week are given
     num_rounds = max_test_rounds + 1 + exp_rounds
 
@@ -67,7 +66,6 @@ class Constants(BaseConstants):
 
 
     # ["id","start","end"]
-
 
 
 class Order(models.Model):
@@ -155,32 +153,30 @@ class Subsession(BaseSubsession):
     "Multiple subsession (rounds) combine to one session"
 
     def before_session_starts(self):
-# by ph
 
         if self.round_number == 1:
-                p = Period(Constants.test_round_ID, 1, 10) # must have id 0
-                p.save()
-                p = Period(Constants.release_last_week_ID, -9, 0) # must have id -1
-                p.save()
-                file_per = "./doc/data/Perioden.csv"
+            p = Period(Constants.test_round_ID, 1, 10) # must have id 0
+            p.save()
+            p = Period(Constants.release_last_week_ID, -9, 0) # must have id -1
+            p.save()
+            file_per = "./doc/data/Perioden.csv"
 
-                with open(file_per, 'r') as csvfile:
-                    periods = []
-                    for p in list(csv.DictReader(csvfile, dialect='excel', delimiter=';')):
-                        periods.append(Period(nr=int(p.get('id')),
-                                              start=int(p.get('start')),
-                                              end=int(p.get('end'))))
-                        periods = sorted(periods,key=attrgetter('nr')) # sort by nr
+            with open(file_per, 'r') as csvfile:
+                periods = []
+                for p in list(csv.DictReader(csvfile, dialect='excel', delimiter=';')):
+                    periods.append(Period(nr=int(p.get('id')),
+                                          start=int(p.get('start')),
+                                          end=int(p.get('end'))))
+                    periods = sorted(periods,key=attrgetter('nr')) # sort by nr
+                for period in periods:
+                    period.save()   # save to db
+
+                if debug:
+                    print("Periods are as follows:")
                     for period in periods:
-                        period.save()   # save to db
-
-                    if debug:
-                        print("Periods are as follows:")
-                        for period in periods:
-                            print(period)
+                        print(period)
 
 
-# end by ph
         # set is test round
         test_round = False
         release_last_week = False
