@@ -39,21 +39,13 @@ class OrderRelease(Page):
         self.player.particip.test_time_left -= diff_secs
         self.player.particip.save()
 
-        if models.debug:
-            print("Released Orders:")
-            for k in request.POST:
-                print(k, request.POST[k])
-
         # save released orders
-        # if not self.player.release_last_week_round:
-        print (request.POST)
-        print("orders: ", orders)
         for order in orders:
-                if "order_"+str(order.get_order_id()) in request.POST and \
-                   request.POST["order_"+str(order.get_order_id())]:
+            if "order_"+str(order.get_order_id()) in request.POST and \
+               request.POST["order_"+str(order.get_order_id())]:
 
-                    order.set_release(current_period.start)
-                    order.save()
+                order.set_release(current_period.start)
+                order.save()
 
         return super(OrderRelease, self).post(request, **kwargs)
 
@@ -69,16 +61,17 @@ class OrderRelease(Page):
         sum_costs_ob = get_sum_costs(self)
         last_week_orders = []
         bgcolor = Constants.bgcolor_exec_phase
+        phase = Constants.name_exec_phase
+
         if self.player.release_last_week_round:
             nr = self.player.subsession.session.config['start_wip_count']
             last_week_orders = releasable_orders[:nr]
             releasable_orders = releasable_orders[nr:]
-            # all_orders = get_all_orders(self)
-            # last_week_orders = [o for o in all_orders if
-            #                     o.release_date is not None]
             bgcolor = Constants.bgcolor_prep_phase
-        if is_test_phase(self):
+            phase = Constants.name_prep_phase
+        elif is_test_phase(self):
             bgcolor = Constants.bgcolor_trial_phase
+            phase = Constants.name_trial_phase
 
         # print("Period: ", self.player.period)
         # print("Particip: ", self.player.particip)
@@ -120,6 +113,7 @@ class OrderRelease(Page):
                 'flow_time_year': self.player.subsession.session.config['flow_time_last_year'],
 
                 'bgcolor': bgcolor,
+                'phase': phase,
         }
 
     def before_next_page(self):
@@ -146,11 +140,13 @@ class Results(Page):
         sum_costs_ob = get_sum_costs(self)
         reset_test_phase = is_test_phase(self) and self.player.period.nr == -1
         bgcolor = Constants.bgcolor_exec_phase
+        phase = Constants.name_exec_phase
         if self.player.release_last_week_round:
             bgcolor = Constants.bgcolor_prep_phase
-        elif is_test_phase(self):
+            phase = Constants.name_prep_phase
+        if is_test_phase(self):
             bgcolor = Constants.bgcolor_trial_phase
-
+            phase = Constants.name_trial_phase
 
         return {'releasable_orders': get_releasable_orders(self),
                 'released_orders': get_released_orders(self),
@@ -177,9 +173,10 @@ class Results(Page):
                 'flow_time': "{0:.2f}".format(self.player.flow_time).replace(".",","),
                 'sum_costs_object': sum_costs_ob,
                 'sum_costs': sum_costs_ob.wip + sum_costs_ob.fgi + sum_costs_ob.bo,
-                'current_day': self.player.period.end,
+                'current_day': self.player.period.end-1,
                 'flow_time_year': self.player.subsession.session.config['flow_time_last_year'],
                 'bgcolor': bgcolor,
+                'phase': phase,
         }
 
     def post(self, request, **kwargs):
@@ -201,6 +198,7 @@ class Results(Page):
 
 
         if is_test_phase(self) and self.player.period.nr == -1:
+            print("RESET OF ORDER AND CSTS IN TEST")
             # reset all orders
             for o in get_all_orders(self):
                 o.nr = None
@@ -221,7 +219,10 @@ class Results(Page):
             self.player.particip.in_current_period = 1
             if self.player.particip.test_time_left < 1:
                 self.player.particip.test_time_left = 0
-            self.player.particip.save()
+
+        # self.player.save()
+        # self.player.costs.save()
+        # self.player.particip.save()
 
 
         self.participant.vars['sum_costs'] = sum_costs
@@ -238,11 +239,11 @@ class TimePage(Page):
         sum_costs_ob = get_sum_costs(self)
 
         return {'current_day': safe_json(self.player.period.start-1),
-                'end_day': safe_json(self.player.period.end),
+                'end_day': safe_json(self.player.period.end-1),
         }
 
     def before_next_page(self):
-        self.player.particip.test_time_left -= 6
+        self.player.particip.test_time_left -= 4
         self.player.particip.save()
 
 

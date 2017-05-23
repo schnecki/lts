@@ -4,7 +4,7 @@
 {% load static %}
 
 {% block title %}
-Testaufgabenphase
+{{ phase }}
 {% endblock %}
 
 {% block content %}
@@ -192,6 +192,10 @@ Informationen aus in der Tabelle und der Anleitung.</div><br/><br/>
         return false;
   }
   });
+
+  var bgcolor = {{ bgcolor|json }};
+  document.body.style.background = bgcolor;
+
 
 </script>
 {% endblock %}

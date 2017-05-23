@@ -92,10 +92,21 @@ def get_fgi_orders(page):
                        o.sent_date is None and
                        o.fgi_arrived_date is not None, all_orders))
 
+def get_test_round_drop_nr(page):
+    test_round_len = abs(Constants.test_round_ID)
+    return int((page.player.subsession.round_number-1) / test_round_len)*test_round_len
+
+
 def get_last_known_flow_time(page):
 
+    test_phase = is_test_phase(page)
     flow_time_list = [p.flow_time for p in page.player.in_previous_rounds()
-                      if not is_test_phase(page) and not p.test_round]
+                      if test_phase or not p.test_round]
+    if test_phase:
+        # drop all from other trial rounds
+        nr = get_test_round_drop_nr(page)
+        flow_time_list = flow_time_list[nr:]
+
     flow_time_list.reverse()
     flow_time_list.append(page.player.subsession.session.config['start_flow_time'])
     print("Flow_Time_List: ", flow_time_list)
@@ -107,7 +118,14 @@ def get_sum_costs(page):
 
     test_phase = is_test_phase(page)
     cost_elems = [p.costs for p in page.player.in_previous_rounds()
-                  if not p.test_round ]
+                  if test_phase or not p.test_round ]
+    if test_phase:
+        # drop all from other trial rounds
+        nr = get_test_round_drop_nr(page)
+        print("nr: " , nr)
+        print("cost_elems before: " , cost_elems)
+        cost_elems = cost_elems[nr:]
+
     cost_elems.append(page.player.costs) # add current costs object to list
 
     print("cost_elems: ", cost_elems)

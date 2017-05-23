@@ -19,6 +19,10 @@ class Constants(BaseConstants):
     # settings
     days_last_release = 10      # number of days when last release was
 
+    # background colors
+    bgcolor_test_phase = "#ffeaff"
+    name_test_phase = "Testaufgabenphase"
+
 
 class Subsession(BaseSubsession):
     wip = models.CurrencyField(default=0)

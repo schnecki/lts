@@ -511,7 +511,8 @@ var FlipClock;
          */
 
         increment: function() {
-            this.factory.time.addTwoDays();
+            // this.factory.time.addTwoDays();
+            this.factory.time.addThreeDays();
         },
 
         /**
@@ -1650,6 +1651,11 @@ var FlipClock;
         addTwoDays: function() {
             this.addSeconds(2*86400);
         },
+
+        addThreeDays: function() {
+            this.addSeconds(3*86400);
+        },
+
 
         /**
          * Substracts X seconds from the current time

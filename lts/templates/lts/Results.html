@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Ergebnisse für die letzte Freigabe
+    {{ phase }}: Ergebnisse für die letzte Freigabe
 {% endblock %}
 
 {% block content %}
@@ -25,7 +25,7 @@ var reset_test_phase = {{ reset_test_phase|json }}
 var secs = {{ seconds_left_test|json }}
 if (secs > 0 && reset_test_phase) {
   var xs = document.getElementsByClassName("next-button");
-  xs[0].innerHTML='Neue Runde der Testphase starten';
+  xs[0].innerHTML='Neue Runde der Probephase starten';
 }
 
 

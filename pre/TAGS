@@ -1,22 +1,10 @@
 
-flycheck_views.py,286
-class OrderRelease(8,215
-    def vars_for_template(10,244
-class ResultsWaitPage(39,1244
-    def after_all_players_arrive(41,1280
-class Results(45,1339
-    def vars_for_template(47,1363
-class Info(74,2378
-class Welcome(77,2409
-class WelcomeTestphase(80,2443
-class Test(84,2488
-
 models.py,128
 class Constants(14,243
-class Subsession(23,445
-    def before_session_starts(28,611
-class Group(33,835
-class Player(37,874
+class Subsession(27,551
+    def before_session_starts(32,717
+class Group(37,941
+class Player(41,980
 
 _builtin/__init__.py,151
 class Page(8,131
@@ -30,7 +18,7 @@ tests.py,49
 class PlayerBot(7,136
     def play_round(9,161
 
-views.py,286
+views.py,321
 class OrderRelease(8,215
     def vars_for_template(10,244
 class ResultsWaitPage(39,1244
@@ -41,6 +29,14 @@ class Info(74,2378
 class Welcome(77,2409
 class WelcomeTestphase(80,2443
 class Test(84,2488
+    def vars_for_template(89,2638
+
+flycheck_models.py,128
+class Constants(14,243
+class Subsession(27,551
+    def before_session_starts(32,717
+class Group(37,941
+class Player(41,980
 
 __init__.py,0
 

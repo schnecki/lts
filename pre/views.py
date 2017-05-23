@@ -86,6 +86,15 @@ class Test(Page):
     form_model = models.Player
     form_fields = ['triesTestQ1', 'triesTestQ2', 'triesTestQ3', 'triesTestQ4', 'triesTestQ5']
 
+    def vars_for_template(self):
+
+        bgcolor = Constants.bgcolor_test_phase
+        phase = Constants.name_test_phase
+
+        return { 'bgcolor': bgcolor,
+                 'phase': phase,
+               }
+
 
 page_sequence = [
     # OrderRelease,

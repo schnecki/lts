@@ -2,8 +2,6 @@
 {% load app_filters %}
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
-
 <div class="header well well-lg">
   <h3 class="panel-sub-heading">
     Aktueller Status vom {{ datetimetext }} des {{ current_day | get_date }}
@@ -18,6 +16,7 @@
    Rückmeldung für diese Entscheidung zu erhalten.
 </div>
 {% else %}
+{% endif %}
 
 
 <div id="testtimer" class="alert alert-warning">
@@ -35,14 +34,14 @@
   <p>
     <!-- <h4>Auf Basis des vergangenen Jahres (Planwerte)</h4> -->
     <div id="leadtime">
-    <table class="info">
+    <table class="infocosts">
       <!-- <thead> -->
       <!--   <th class="lhs">Durchlaufzeit</th> -->
       <!--   <th class="rhs">der vergangenen Periode</th> -->
       <!--   <th class="rhs">des vergangenen Jahres</th> -->
       <!-- </thead> -->
       <tr>
-        <td class="lhs">Durchschnittliche Zeit im System pro Auftrag auf Basis des vergangenen Jahres (Planwerte)</td>
+        <td class="lhs">Durchschnittliche Zeit im System<br />Pro Auftrag auf Basis des <b>vergangenen Jahres</b> (Planwerte)</td>
         <td class="rhs">{{ flow_time_year }} Tage</td>
       </tr>
     </table>
@@ -53,14 +52,14 @@
   <p>
     <!-- <h4></h4> -->
     <div id="leadtime">
-    <table class="info">
+    <table class="infocosts">
       <!-- <thead> -->
       <!--   <th class="lhs">Durchlaufzeit</th> -->
       <!--   <th class="rhs">der vergangenen Periode</th> -->
       <!--   <th class="rhs">des vergangenen Jahres</th> -->
       <!-- </thead> -->
       <tr>
-        <td class="lhs">Durchschnittliche Zeit im System pro Auftrag vom letzten Durchgang</td>
+        <td class="lhs">Durchschnittliche Zeit im System<br />Pro Auftrag vom <b>letzten Durchgang</b></td>
         <td class="rhs">{{ flow_time }} Tage</td>
       </tr>
     </table>
@@ -99,7 +98,7 @@
     </div>
   </p>
 </div>
-{% endif %}
+
 <input style="visibility:hidden;" type="textfield" id="id_click_show" name="click_show" value="0" />
 <input style="visibility:hidden;" type="textfield" id="start_time" name="start_time" value="{{ start_time }}" />
 
@@ -188,6 +187,7 @@ $(document).bind("keydown", disableF5);
     width: 100px;
 }
 
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 
 </style>
 

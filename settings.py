@@ -121,7 +121,7 @@ SESSION_CONFIGS = [
         'szenario': 1,
         'display_name': "Lead Time Syndrome Szenario 1 (KoKoNoRo)",
         'num_demo_participants': 1,
-        'app_sequence': [# 'pre',
+        'app_sequence': ['pre',
                          'lts',
                          'survey',
                          'payment_info'
