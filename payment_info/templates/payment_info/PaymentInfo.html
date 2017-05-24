@@ -1,5 +1,7 @@
 {% extends "global/Base.html" %}
 {% load staticfiles otree_tags %}
+{% load staticfiles %}
+
 
 {% block title %}
 Vielen Dank für Ihre Teilnahme
@@ -13,8 +15,23 @@ Vielen Dank für Ihre Teilnahme
   <p>
     Bitte schreiben Sie den Auszahlungswert in Ihre Quittung.<br /><br />
 
-    Gesamtkosten: {{ sum_costs }} <br />
-    Ihre Auszahlung: {{ payment }}
+    <table>
+      <tr>
+        <td class="lhs">Gesamtkosten</td>
+        <td class="rhs">${{ sum_costs }} - {{ costs_lastweek }}$</td>
+        <td class="lhs" style="text-align:right;">$ = {{ actual_costs}}$ &nbsp; &euro;</td>
+      </tr>
+      <tr>
+        <td class="lhs">Ihr Verdienst</td>
+        <td class="rhs">$4 + 10 \cdot \frac{({{benchmark}} + 20)}{({{sum_costs}} - {{ costs_lastweek }} + 20)}$</td>
+        <td class="lhs" style="text-align:right;">$ = {{ payment}}$ &nbsp; &euro;</td>
+      </tr>
+      <tr>
+        <td class="lhs">Ihre Auszahlung</td>
+        <td class="rhs" style="color:red;text-align:right;" colspan="2">${{ payment }}$ &nbsp;  &euro;</td>
+      </tr>
+    </table>
+
   </p>
 </div>
 
@@ -34,3 +51,61 @@ Vielen Dank für Ihre Teilnahme
 {% block form %}
 
 {% endblock %}
+
+{% block scripts %}
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+{% endblock %}
+{% block styles %}
+
+<style type="text/css">
+      .infocosts {
+          text-align:left;
+          width: 100%;
+
+      }
+
+      h3 {
+          text-align:center;
+      }
+
+      h4 {
+          text-align:left;
+          text-decoration: bold;
+      }
+.td {
+    font-family:Arial,Verdana,sans-serif;
+      font-size:1em;
+}
+
+.lhs {
+    font-family:Arial,Verdana,sans-serif;
+    font-size:1em;
+    width: 25%;
+    height: 40px;
+    text-align:left;
+}
+
+.rhs {
+    font-family:Arial,Verdana,sans-serif;
+    font-size:1em;
+    text-align:right;
+    width: 25%;
+}
+
+
+</style>
+
+{% endblock %}
+

@@ -1,17 +1,20 @@
 
-flycheck_views.py,117
+flycheck_views.py,221
 class Demographics(6,141
-class RiskAttitude(16,393
-class Personality(22,484
-class HowTo(27,607
-class End(31,687
+    def vars_for_template(16,393
+class RiskAttitude(22,557
+    def vars_for_template(27,647
+class Personality(32,810
+    def vars_for_template(36,932
+class HowTo(41,1095
+class End(46,1176
 
 models.py,117
 class Constants(11,242
-class Subsession(17,351
-class Group(21,396
-class Player(25,431
-    def set_payoff(26,457
+class Subsession(20,427
+class Group(24,472
+class Player(28,507
+    def set_payoff(29,533
 
 _builtin/__init__.py,151
 class Page(6,130
@@ -25,12 +28,16 @@ tests.py,49
 class PlayerBot(6,129
     def play_round(8,152
 
-views.py,117
+views.py,256
 class Demographics(6,141
-class RiskAttitude(16,393
-class Personality(22,484
-class HowTo(27,607
-class End(31,687
+    def vars_for_template(16,393
+class RiskAttitude(22,557
+    def vars_for_template(27,647
+class Personality(32,810
+    def vars_for_template(36,932
+class HowTo(41,1095
+    def vars_for_template(45,1175
+class End(50,1338
 
 __init__.py,0
 

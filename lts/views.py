@@ -281,6 +281,6 @@ page_sequence = [
     Results,
     # ResultsWaitPage,
     WaitPageEndTest,
-    Info
+    # Info
     # EndPage
 ]

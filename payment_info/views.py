@@ -14,8 +14,11 @@ class PaymentInfo(Page):
 
         return {
             'redemption_code': participant.label or participant.code,
-            'sum_costs': "{0:.2f} €".format(csts).replace(".",","),
-            'payment': "{0:.2f} €".format(payfun(csts)).replace(".",","),
+            'sum_costs': "{0:.2f}".format(csts).replace(".",","),
+            'payment': "{0:.2f}".format(payfun(csts)).replace(".",","),
+            'costs_lastweek': self.player.subsession.session.config['costs_lastweek'],
+            'benchmark': self.player.subsession.session.config['benchmark'],
+            'actual_costs': "{0:.2f}".format(csts-self.player.subsession.session.config['costs_lastweek']).replace(".",","),
         }
 
 

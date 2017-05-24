@@ -131,7 +131,8 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 6.75,
         'start_wip_count': 2,
 
-        'payment_fun': pickle.dumps(lambda csts: 4+10*1/(1+csts)),
+        'payment_fun': pickle.dumps(lambda csts: 4+10*20/(20+csts)),
+        'benchmark': 0,
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -143,6 +144,8 @@ SESSION_CONFIGS = [
         'intro_end_csts_wip': 0,
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
+
+        'costs_lastweek': 0,
 
         # test setup
         'num_test_orders': 12,  # nr of test orders taken from end of demand stream
@@ -166,7 +169,9 @@ SESSION_CONFIGS = [
         'start_flow_time': 8.10,
         'flow_time_last_year': 13.49,
         'start_wip_count': 4,
-        'payment_fun': pickle.dumps(lambda csts: 4+10*490/csts),
+        'payment_fun': pickle.dumps(lambda csts: 4+10*(490+20)/(csts-10+20)),
+        'costs_lastweek': 10,
+        'benchmark': 490,
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -178,6 +183,7 @@ SESSION_CONFIGS = [
         'intro_end_csts_wip': 10,
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
+
 
         # test setup
         'num_test_orders': 12,  # nr of test orders taken from end of demand stream
@@ -201,7 +207,9 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 13.01,
         'start_wip_count': 4,
 
-        'payment_fun': pickle.dumps(lambda csts: 4+10*440/csts),
+        'payment_fun': pickle.dumps(lambda csts: 4+10*(440+20)/(csts-10+20)),
+        'costs_lastweek': 10,
+        'benchmark': 440,
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -213,6 +221,7 @@ SESSION_CONFIGS = [
         'intro_end_csts_wip': 10,
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
+
 
         # test setup
         'num_test_orders': 12,  # nr of test orders taken from end of demand stream
@@ -235,7 +244,9 @@ SESSION_CONFIGS = [
         'start_flow_time': 6.75,
         'flow_time_last_year': 17.11,
         'start_wip_count': 3,
-        'payment_fun': pickle.dumps(lambda csts: 4+10*845/csts),
+        'payment_fun': pickle.dumps(lambda csts: 4+10*(845+20)/(csts-5+20)),
+        'costs_lastweek': 5,
+        'benchmark': 845,
 
         # Starting information before intro
         'intro_beg_csts_wip': 0,
@@ -247,6 +258,7 @@ SESSION_CONFIGS = [
         'intro_end_csts_wip': 5,
         'intro_end_csts_fgi': 0,
         'intro_end_csts_bo':0,
+
 
         # test setup
         'num_test_orders': 11,  # nr of test orders taken from end of demand stream

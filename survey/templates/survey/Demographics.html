@@ -27,6 +27,10 @@
             return (a.innerHTML > b.innerHTML) ? 1 : -1;
         }
         $('#id_country option').sort(sort).appendTo('#id_country');
+
+  var bgcolor = {{ bgcolor|json }};
+  document.body.style.background = bgcolor;
+
     </script>
 
 {% endblock %}

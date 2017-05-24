@@ -1,5 +1,6 @@
 {% extends "global/Base.html" %}
 {% load staticfiles otree_tags %}
+{% load staticfiles %}
 
 {% block title %}
     Willkommen zum Experiment
@@ -8,8 +9,8 @@
 {% block content %}
 
 <div class="info">
-  <center><p>Ihre Angaben werden vertraulich behandelt. Mit einem Klick auf
-  'Weiter' beginnen Sie die Testaufgabenphase.</p></center>
+  Ihre Angaben werden vertraulich behandelt. Mit einem Klick auf
+  'Weiter' beginnen Sie die Testaufgabenphase.
 </div>
 
 <!--
@@ -23,4 +24,9 @@ http://getbootstrap.com/components/
 
     {% next_button %}
 
+{% endblock %}
+
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 {% endblock %}

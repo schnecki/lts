@@ -13,20 +13,39 @@ class Demographics(Page):
                    'faculity',
                    'participate']
 
+    def vars_for_template(self):
+        return { 'bgcolor': Constants.bgcolor_surv_phase,
+                 'phase': Constants.name_surv_phase,
+                }
+
+
 class RiskAttitude(Page):
     
     form_model = models.Player
     form_fields = ['risk']
 
+    def vars_for_template(self):
+        return { 'bgcolor': Constants.bgcolor_surv_phase,
+                 'phase': Constants.name_surv_phase,
+                }
 
 class Personality(Page):
     form_model = models.Player
     form_fields = ["big_five_{}".format(i) for i in range(1,15)]
 
+    def vars_for_template(self):
+        return { 'bgcolor': Constants.bgcolor_surv_phase,
+                 'phase': Constants.name_surv_phase,
+                }
 
 class HowTo(Page):
     form_model = models.Player
     form_fields = ['how_to']
+
+    def vars_for_template(self):
+        return { 'bgcolor': Constants.bgcolor_surv_phase,
+                 'phase': Constants.name_surv_phase,
+                }
 
 class End(Page):
     pass

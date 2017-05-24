@@ -43,27 +43,25 @@ class Constants(BaseConstants):
     # Test data
     test_round_length = 3       # round to play for each test round
     max_test_rounds = 15        # maximum number of test rounds
-    test_timeout = 30          # seconds until test is over
+    test_timeout = 300          # seconds until test is over
 
     test_period = 1
 
     # rounds
-    exp_rounds = 24             # number of experiment rounds
+    exp_rounds = 2             # number of experiment rounds
 
     # plus 1 for round in which releases of last week are given
     num_rounds = max_test_rounds + 1 + exp_rounds
 
     # background colors
-    bgcolor_trial_phase = "#ffeaea"
-    bgcolor_prep_phase = "#eaeaea"
-    bgcolor_exec_phase = "#eaffea"
-    bgcolor_surv_phase = "#eaeaff"
+    bgcolor_trial_phase = "#8fbc8f"
+    bgcolor_prep_phase = "#20b2aa"
+    bgcolor_exec_phase = "#9acd32"
 
     # names of phases
     name_trial_phase ="Probephase"
     name_prep_phase = "Vorbereitungsphase"
     name_exec_phase = "Durchführungsphase"
-    name_surv_phase = "Befragungsphase"
 
     costs_wip = c(5)            # costs for wip per period and order
     costs_fgi = c(5)            # costs for fgi per period and order

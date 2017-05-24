@@ -1,5 +1,6 @@
 {% extends "global/Base.html" %}
 {% load staticfiles otree_tags %}
+{% load staticfiles %}
 
 {% block title %}
       Probephase
@@ -25,4 +26,8 @@ http://getbootstrap.com/components/
 
     {% next_button %}
 
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 {% endblock %}

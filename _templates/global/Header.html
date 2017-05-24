@@ -9,7 +9,7 @@
 </div>
 
 {% if is_last_week_release_round %}
-<div class="info info-warning">
+<div class="alert alert-success">
    Dies ist die Vorbereitungsphase. Unten sehen Sie die <b>von vor 10 Tagen, also
    am {{current_day | get_date }}, freigegebenen Aufträge</b>. Entnehmen Sie die
    Informationen aus dem Auftragsbuch und klicken Sie auf 'Weiter' um die
@@ -24,8 +24,9 @@
 </div>
 
 {% if show_howto_info %}
-<div class="info">
-    TODO Siehe Anleitung Seite 5.
+<div class="alert alert-success">
+    Für die Informationen zum Auftragsbuch und der Freigabeentscheidung siehe
+    Anleitung.
 </div>
 {% endif %}
 
@@ -187,8 +188,9 @@ $(document).bind("keydown", disableF5);
     width: 100px;
 }
 
-<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 
 </style>
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 
 {% endblock %}
+

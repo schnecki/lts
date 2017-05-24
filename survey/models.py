@@ -13,6 +13,9 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
+    name_surv_phase = "Befragungsphase"
+    bgcolor_surv_phase = "#43cd80"
+
 
 class Subsession(BaseSubsession):
     pass

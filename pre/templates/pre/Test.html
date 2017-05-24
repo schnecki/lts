@@ -1,7 +1,7 @@
 {% extends "global/Base.html" %}
 {% load staticfiles otree_tags %}
 {% load app_filters %}
-{% load static %}
+{% load staticfiles %}
 
 {% block title %}
 {{ phase }}
@@ -12,10 +12,11 @@
 
 <div class="header well well-lg">
 
-<div>Gegeben ist folgendes Beispiel mit 3 Aufträgen, welche alle an derselben Maschine
+Gegeben ist folgendes Beispiel mit 3 Aufträgen, welche alle an derselben Maschine
 bearbeitet werden. Bitte Beantworten Sie die untenstehenden Fragen auf Basis der
-Informationen aus in der Tabelle und der Anleitung.</div><br/><br/>
+Informationen aus in der Tabelle und der Anleitung.</div>
 
+<div class="header well well-lg">
 
     <table class="info">
       <thead>

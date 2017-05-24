@@ -1,17 +1,15 @@
 {% extends "global/Base.html" %}
 {% load staticfiles otree_tags %}
+{% load staticfiles %}
 
 {% block title %}
-    Info
+    Durchführungsphase beendet
 {% endblock %}
 
 {% block content %}
 
-<div class="header well well-lg">
+<div class="info">
 
-    <h3 class="panel-sub-heading">
-      Durchführungsphase beendet
-    </h3>
 <p>
 Die Durchführungsphase ist nun zu Ende. Es folgt die Befragungsphase. Erst nach
 Ende der Befragungsphase erhalten Sie die Darstellung Ihres gesamten Verdienstes.
@@ -30,4 +28,9 @@ http://getbootstrap.com/components/
 
     {% next_button %}
 
+{% endblock %}
+
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
 {% endblock %}
