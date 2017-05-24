@@ -14,7 +14,7 @@ class Constants(BaseConstants):
     num_rounds = 1
 
     name_surv_phase = "Befragungsphase"
-    bgcolor_surv_phase = "#43cd80"
+    bgcolor_surv_phase = "hsla(147, 58%, 53.3%, 0.1)"
 
 
 class Subsession(BaseSubsession):

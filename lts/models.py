@@ -54,9 +54,9 @@ class Constants(BaseConstants):
     num_rounds = max_test_rounds + 1 + exp_rounds
 
     # background colors
-    bgcolor_trial_phase = "#8fbc8f"
-    bgcolor_prep_phase = "#20b2aa"
-    bgcolor_exec_phase = "#9acd32"
+    bgcolor_trial_phase = "hsla(120, 25.1%, 64.9%, 0.1)"
+    bgcolor_prep_phase  = "hsla(177, 69.5%, 41.2%, 0.1)"
+    bgcolor_exec_phase  = "hsla(79, 60.8%, 50%, 0.1)"
 
     # names of phases
     name_trial_phase ="Probephase"

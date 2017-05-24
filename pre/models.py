@@ -20,7 +20,7 @@ class Constants(BaseConstants):
     days_last_release = 10      # number of days when last release was
 
     # background colors
-    bgcolor_test_phase = "#a2cd5a"
+    bgcolor_test_phase = "hsla(82, 53.5%, 57.8%, 0.1)"
     name_test_phase = "Testaufgabenphase"
 
 

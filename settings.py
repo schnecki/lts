@@ -160,7 +160,7 @@ SESSION_CONFIGS = [
         'szenario': 2,
         'display_name': "Lead Time Syndrome Szenario 2 (KoVarNoRo)",
         'num_demo_participants': 1,
-        'app_sequence': [# 'pre',
+        'app_sequence': ['pre',
                          'lts',
                          'survey',
                          'payment_info'
@@ -198,7 +198,7 @@ SESSION_CONFIGS = [
         'szenario': 3,
         'display_name': "Lead Time Syndrome Szenario 3 (KoKoRo)",
         'num_demo_participants': 1,
-        'app_sequence': [# 'pre',
+        'app_sequence': ['pre',
                          'lts',
                          'survey',
                          'payment_info'],

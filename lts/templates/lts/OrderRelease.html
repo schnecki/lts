@@ -155,22 +155,20 @@
 
   hidecosts();
 
-
-var secs_left = 300
-var alert_at60 = 60
-var alert_at20 = 20
-var alerted60 = 0
-var alerted20 = 0
+  var secs_left = 300;
+  var alert_at60 = 60;
+  var alert_at20 = 20;
+  var alerted60 = 0;
+  var alerted20 = 0;
 
   // Update the count down every 1 second
   var x = setInterval(function() {
-
 
       // If the count down is finished, click next
       if (secs_left < alert_at60 && alerted == 0) {
         alert("Du hast noch 1 Minute um die Freigabeentscheidung zu treffen, ansonsten schaltet das System automatisch weiter.");
         alerted60 = 1;
-      } elseif (secs_left < alert_at20 && alerted == 0) {
+      } else if (secs_left < alert_at20 && alerted == 0) {
         alert("Du hast noch 20 Sekunden um die Freigabeentscheidung zu treffen, ansonsten schaltet das System automatisch weiter.");
         alerted20 = 1;
       } else {
@@ -181,6 +179,7 @@ var alerted20 = 0
           }
       }
   }, 1000);
+
 
 </script>
 {% endblock %}

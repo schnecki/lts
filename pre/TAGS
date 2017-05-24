@@ -1,10 +1,10 @@
 
-models.py,128
+models.py,129
 class Constants(14,243
-class Subsession(27,551
-    def before_session_starts(32,717
-class Group(37,941
-class Player(41,980
+class Subsession(27,571
+    def before_session_starts(32,737
+class Group(37,961
+class Player(41,1000
 
 _builtin/__init__.py,151
 class Page(8,131
@@ -31,12 +31,12 @@ class WelcomeTestphase(80,2443
 class Test(84,2488
     def vars_for_template(89,2638
 
-flycheck_models.py,128
+flycheck_models.py,129
 class Constants(14,243
-class Subsession(27,551
-    def before_session_starts(32,717
-class Group(37,941
-class Player(41,980
+class Subsession(27,571
+    def before_session_starts(32,737
+class Group(37,961
+class Player(41,1000
 
 __init__.py,0
 
