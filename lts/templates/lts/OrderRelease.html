@@ -155,7 +155,7 @@
 
   hidecosts();
 
-  var secs_left = 300;
+  var max_secs_page_left = 300;
   var alert_at60 = 60;
   var alert_at20 = 20;
   var alerted60 = 0;
@@ -165,14 +165,14 @@
   var x = setInterval(function() {
 
       // If the count down is finished, click next
-      if (secs_left < alert_at60 && alerted == 0) {
+      if (max_secs_page_left < alert_at60 && alerted60 == 0) {
         alert("Du hast noch 1 Minute um die Freigabeentscheidung zu treffen, ansonsten schaltet das System automatisch weiter.");
         alerted60 = 1;
-      } else if (secs_left < alert_at20 && alerted == 0) {
+      } else if (max_secs_page_left < alert_at20 && alerted20 == 0) {
         alert("Du hast noch 20 Sekunden um die Freigabeentscheidung zu treffen, ansonsten schaltet das System automatisch weiter.");
         alerted20 = 1;
       } else {
-          secs_left-=1;
+          max_secs_page_left-=1;
           if (sec_left < 1) {
              var xs = document.getElementsByClassName("next-button");
              xs[0].click();
