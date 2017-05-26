@@ -173,7 +173,7 @@
         alerted20 = 1;
       } else {
           max_secs_page_left-=1;
-          if (sec_left < 1) {
+          if (max_secs_page_left < 1) {
              var xs = document.getElementsByClassName("next-button");
              xs[0].click();
           }
