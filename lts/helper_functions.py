@@ -109,9 +109,9 @@ def get_last_known_flow_time(page):
 
     flow_time_list.reverse()
     flow_time_list.append(page.player.subsession.session.config['start_flow_time'])
-    print("Flow_Time_List: ", flow_time_list)
+    # print("Flow_Time_List: ", flow_time_list)
     flow_time_list = list(filter(lambda x: x > 0, flow_time_list))
-    print(flow_time_list)
+    # print(flow_time_list)
     return flow_time_list[0]
 
 def get_sum_costs(page):
@@ -122,13 +122,13 @@ def get_sum_costs(page):
     if test_phase:
         # drop all from other trial rounds
         nr = get_test_round_drop_nr(page)
-        print("nr: " , nr)
-        print("cost_elems before: " , cost_elems)
+        # print("nr: " , nr)
+        # print("cost_elems before: " , cost_elems)
         cost_elems = cost_elems[nr:]
 
     cost_elems.append(page.player.costs) # add current costs object to list
 
-    print("cost_elems: ", cost_elems)
+    # print("cost_elems: ", cost_elems)
 
     wip = sum(map(lambda x: x.wip,cost_elems))
     fgi = sum(map(lambda x: x.fgi,cost_elems))
@@ -151,9 +151,9 @@ def process_order(page, order, sim_time_left):
         sim_time_left = sim_time_left - order_time_left
         order.fgi_arrived_date = page.player.period.end + 1 - sim_time_left
         # order.save()
-        print("order: ", order)
-        print("p end: ", page.player.period.end)
-        print("sim_time_left: ", sim_time_left)
+        # print("order: ", order)
+        # print("p end: ", page.player.period.end)
+        # print("sim_time_left: ", sim_time_left)
         return sim_time_left
     else:                       # order cannot be finished processing
         order.time_until_finished -= sim_time_left
@@ -174,7 +174,7 @@ def simulate(page):
                                              # of numbers allowed!
 
 
-    print("Period: ", sim_start, sim_end)
+    # print("Period: ", sim_start, sim_end)
 
     all_orders = get_all_orders(page)
 
@@ -229,12 +229,12 @@ def simulate(page):
     page.player.payoff = csts_wip + csts_fgi + csts_bo # save as payoff for output
 
     # calculate statistics
-    print("all: ", list(all_orders))
+    # print("all: ", list(all_orders))
     orders_finished_this_period = [o for o in all_orders if
                                    o.fgi_arrived_date is not None and
                                    o.fgi_arrived_date > sim_start and
                                    o.fgi_arrived_date <= (sim_end+1)]
-    print("fin: " , orders_finished_this_period)
+    # print("fin: " , orders_finished_this_period)
 
 
     orders_flow_times = list(map(lambda o: o.fgi_arrived_date-o.release_date,
@@ -242,7 +242,7 @@ def simulate(page):
     if len(orders_flow_times) == 0:
         page.player.flow_time = get_last_known_flow_time(page)
     else:
-        print("flow_time:", orders_flow_times)
+        # print("flow_time:", orders_flow_times)
         page.player.flow_time = sum(orders_flow_times)/len(orders_flow_times)
 
     # increase current period counter

@@ -32,7 +32,10 @@ SECRET_KEY = 'm632ehh7x5avbjql)hdtfx5=b#bsflz9-dtmmw$b$t%l6s8-yt'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+        # default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+        # default='postgres://lts:uibk-lts@localhost:5432/lts'
+        default='postgres://otree_user:uibk-lts@localhost:5432/django_db'
+
     )
 }
 
@@ -45,6 +48,8 @@ DATABASES = {
 # to DEMO. This will allow people to play in demo mode, but not access
 # the full admin interface.
 
+# OTREE_AUTH_LEVEL=STUDY
+# OTREE_AUTH_LEVEL=DEMO
 AUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')
 
 # setting for integration with AWS Mturk
@@ -80,7 +85,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-# SENTRY_DSN = ''
+SENTRY_DSN = 'http://09207f59a4414909973ebaa15f0dd3b8:68703aafea3343e789d672f521bd1c89@sentry.otree.org/172'
 
 DEMO_PAGE_INTRO_TEXT = """
 oTree games

@@ -198,7 +198,7 @@ class Results(Page):
 
 
         if is_test_phase(self) and self.player.period.nr == -1:
-            print("RESET OF ORDER AND CSTS IN TEST")
+            # print("RESET OF ORDER AND CSTS IN TEST")
             # reset all orders
             for o in get_all_orders(self):
                 o.nr = None

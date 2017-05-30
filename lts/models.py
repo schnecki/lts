@@ -48,7 +48,7 @@ class Constants(BaseConstants):
     test_period = 1
 
     # rounds
-    exp_rounds = 2             # number of experiment rounds
+    exp_rounds = 24             # number of experiment rounds
 
     # plus 1 for round in which releases of last week are given
     num_rounds = max_test_rounds + 1 + exp_rounds
@@ -247,8 +247,8 @@ class Subsession(BaseSubsession):
                                         in_current_period=cur_period,
                                         test_time_left=Constants.test_timeout)
                     particip.save()
-                    if debug:
-                        print("Particip object was created: ", particip)
+                    # if debug:
+                    #     print("Particip object was created: ", particip)
 
                     p.particip = particip # set the participant to be able to link to
                                           # the data
@@ -258,7 +258,7 @@ class Subsession(BaseSubsession):
                 file_dem = self.session.config['file_dem']
 
                 # load demand and convert to corresponding data structures
-                print(os.path.abspath(file_dem))
+                # print(os.path.abspath(file_dem))
                 with open(file_dem, 'r') as csvfile:
                     demands = []
                     demandsTest = []
@@ -279,10 +279,10 @@ class Subsession(BaseSubsession):
                                              time_until_finished=float(d.get('baz')),
                                              from_test_round=True
                         ))
-                    if debug:
-                        print("Demand is as follows:")
-                        for d in demands:
-                            print(d)
+                    # if debug:
+                    #     print("Demand is as follows:")
+                    #     for d in demands:
+                    #         print(d)
 
 
                     # load starting wip
@@ -307,19 +307,19 @@ class Subsession(BaseSubsession):
 
                     for o in demandsTest:
                         o.set_participant_id(p.participant.id)
-                        print("order: ", o)
-                        print("self.round_number: ", self.round_number)
-                        print("test_round: ", test_round)
+                        # print("order: ", o)
+                        # print("self.round_number: ", self.round_number)
+                        # print("test_round: ", test_round)
                         o.save()
                         memb = Membership(particip=p.particip, order=o)
                         memb.save()
 
                     for o in demands:
                         o.set_participant_id(p.participant.id)
-                        print("order: ", o)
-                        print("self.round_number: ", self.round_number)
-                        print("test_round: ", test_round)
-                        print("HERE")
+                        # print("order: ", o)
+                        # print("self.round_number: ", self.round_number)
+                        # print("test_round: ", test_round)
+                        # print("HERE")
                         o.save()
                         memb = Membership(particip=p.particip, order=o)
                         memb.save()
@@ -348,7 +348,7 @@ class Subsession(BaseSubsession):
 
 
         else:
-            print("self.round_number: ", self.round_number)
+            # print("self.round_number: ", self.round_number)
             # set particip object
             for p in self.get_players():
                 particip = Particip.objects.get(particip_id=p.participant.id)
