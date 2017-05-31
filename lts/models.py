@@ -216,7 +216,6 @@ class Subsession(BaseSubsession):
             # first round of test or release from last week or first round of real
             # exp
 
-
             for p in self.get_players():
                 # set starting flow_time
                 if release_last_week:
@@ -259,119 +258,82 @@ class Subsession(BaseSubsession):
 
                 # load demand and convert to corresponding data structures
                 # print(os.path.abspath(file_dem))
-                with open(file_dem, 'r') as csvfile:
-                    demands = []
-                    demandsTest = []
-                    for d in list(csv.DictReader(csvfile, dialect='excel', delimiter=';')):
-                        demands.append(Order(order_id=int(d.get('id')),
-                                             # participant_id=participants_id,
-                                             arrival=int(d.get('arrival')),
-                                             due=int(d.get('due')),
-                                             full_processing_time=float(d.get('baz')),
-                                             time_until_finished=float(d.get('baz')),
-                                             from_test_round=False
-                        ))
-                        demandsTest.append(Order(order_id=int(d.get('id')),
-                                             # participant_id=participants_id,
-                                             arrival=int(d.get('arrival')),
-                                             due=int(d.get('due')),
-                                             full_processing_time=float(d.get('baz')),
-                                             time_until_finished=float(d.get('baz')),
-                                             from_test_round=True
-                        ))
-                    # if debug:
-                    #     print("Demand is as follows:")
-                    #     for d in demands:
-                    #         print(d)
+                for p in self.get_players():
+
+                    with open(file_dem, 'r') as csvfile:
+                        demands = []
+                        demandsTest = []
+                        for d in list(csv.DictReader(csvfile, dialect='excel', delimiter=';')):
+                            demands.append(Order(order_id=int(d.get('id')),
+                                                 # participant_id=participants_id,
+                                                 arrival=int(d.get('arrival')),
+                                                 due=int(d.get('due')),
+                                                 full_processing_time=float(d.get('baz')),
+                                                 time_until_finished=float(d.get('baz')),
+                                                 from_test_round=False
+                            ))
+                            demandsTest.append(Order(order_id=int(d.get('id')),
+                                                 # participant_id=participants_id,
+                                                 arrival=int(d.get('arrival')),
+                                                 due=int(d.get('due')),
+                                                 full_processing_time=float(d.get('baz')),
+                                                 time_until_finished=float(d.get('baz')),
+                                                 from_test_round=True
+                            ))
+                        # if debug:
+                        #     print("Demand is as follows:")
+                        #     for d in demands:
+                        #         print(d)
 
 
-                    # load starting wip
-                    # start_wip = self.session.config['start_wip']
+                        # load starting wip
+                        # start_wip = self.session.config['start_wip']
 
-                    num_test_orders=self.session.config['num_test_orders']
-                    test_date_arr_move=self.session.config['test_date_arr_move']
-                    test_date_due_move=self.session.config['test_date_due_move']
+                        num_test_orders=self.session.config['num_test_orders']
+                        test_date_arr_move=self.session.config['test_date_arr_move']
+                        test_date_due_move=self.session.config['test_date_due_move']
 
-                    # add demand to player
-                    if test_round:
-                        demandsTest.reverse()
-                        demandsTest = demandsTest[:num_test_orders]
-                        demandsTest.reverse()
-                        for d in demandsTest:
-                            if d.is_rush_order():
-                                test_date_due_rush_move=self.session.config['test_date_due_rush_move']
-                                d.due -= test_date_due_rush_move
-                            else:
-                                d.due -= test_date_due_move
-                            d.arrival -= test_date_arr_move
+                        # add demand to player
+                        if test_round:
+                            demandsTest.reverse()
+                            demandsTest = demandsTest[:num_test_orders]
+                            demandsTest.reverse()
+                            for d in demandsTest:
+                                if d.is_rush_order():
+                                    test_date_due_rush_move=self.session.config['test_date_due_rush_move']
+                                    d.due -= test_date_due_rush_move
+                                else:
+                                    d.due -= test_date_due_move
+                                d.arrival -= test_date_arr_move
 
-                    for o in demandsTest:
-                        o.set_participant_id(p.participant.id)
-                        # print("order: ", o)
-                        # print("self.round_number: ", self.round_number)
-                        # print("test_round: ", test_round)
-                        o.save()
-                        memb = Membership(particip=p.particip, order=o)
-                        memb.save()
+                        for o in demandsTest:
+                            o.set_participant_id(p.participant.id)
+                            print("order: ", o)
+                            print("player: ", p.particip)
+                            print("self.round_number: ", self.round_number)
+                            print("test_round: ", test_round)
+                            o.save()
+                            memb = Membership(particip=p.particip, order=o)
+                            memb.save()
 
-                    for o in demands:
-                        o.set_participant_id(p.participant.id)
-                        # print("order: ", o)
-                        # print("self.round_number: ", self.round_number)
-                        # print("test_round: ", test_round)
-                        # print("HERE")
-                        o.save()
-                        memb = Membership(particip=p.particip, order=o)
-                        memb.save()
-
-
-                # add starting wip
-                # for p in self.get_players():
-                #     # add starting wip to player
-                #     for (n, oid, ar, du, fpt, tuf, rd, ip, fad, sd) in start_wip:
-                #         o = Order(nr=n,
-                #                   order_id=oid,
-                #                   arrival=ar,
-                #                   due=du,
-                #                   full_processing_time=fpt,
-                #                   time_until_finished=tuf,
-                #                   release_date=rd,
-                #                   is_processing=ip,
-                #                   fgi_arrived_date=fad,
-                #                   sent_date=sd,
-                #                   from_test_round=False
-                #                  )
-                #         o.set_participant_id(p.participant.id)
-                #         o.save()
-                #         memb = Membership(particip=p.particip, order=o)
-                #         memb.save()
-
+                        for o in demands:
+                            o.set_participant_id(p.participant.id)
+                            # print("order: ", o)
+                            # print("self.round_number: ", self.round_number)
+                            # print("test_round: ", test_round)
+                            # print("HERE")
+                            o.save()
+                            memb = Membership(particip=p.particip, order=o)
+                            memb.save()
 
         else:
             # print("self.round_number: ", self.round_number)
             # set particip object
             for p in self.get_players():
                 particip = Particip.objects.get(particip_id=p.participant.id)
-                # particip.save()
+                particip.save()
                 p.particip = particip # set the participant to be able to link to
                                       # the data
-
-                # set whether this is a testround or not
-                # if self.round_number <= Constants.max_test_rounds:
-                #     p.test_round = True
-                # else:
-                #     p.test_round = False
-
-                # p.save()              # save info to player object
-
-
-            # move data from previous rounds
-            # for p in self.get_players():
-            #     if debug:
-            #         print("Particip object was loaded: ", particip)
-            #     print("New orders: ")
-            #     for order in p.particip.orders.all():
-            #         print(order)
 
 
 class Group(BaseGroup):
