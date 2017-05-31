@@ -23,11 +23,10 @@ class Subsession(BaseSubsession):
             p.payoff = 0
 
 
-
 class Group(BaseGroup):
     pass
 
 class Player(BasePlayer):
-    pass
+    auszahlung = models.FloatField(default=None)
 
 

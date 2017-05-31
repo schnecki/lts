@@ -1,14 +1,14 @@
 
 flycheck_views.py,59
 class PaymentInfo(8,209
-    def vars_for_template(10,235
+    def vars_for_template(13,304
 
 models.py,128
 class Constants(14,310
 class Subsession(19,424
     def before_session_starts(21,459
-class Group(27,561
-class Player(30,595
+class Group(26,560
+class Player(29,594
 
 _builtin/__init__.py,150
 class Page(5,92
@@ -24,7 +24,7 @@ class PlayerBot(6,129
 
 views.py,59
 class PaymentInfo(8,209
-    def vars_for_template(10,235
+    def vars_for_template(13,304
 
 __init__.py,0
 
