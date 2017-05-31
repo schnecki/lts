@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-
+    {% csrf_token %}
     {% include "global/Header.html" %}
 
     {% next_button %}
