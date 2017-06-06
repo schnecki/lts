@@ -166,7 +166,7 @@ class Player(BasePlayer):
                                                            widget=widgets.RadioSelect())
 
     imp_flowtime_year = models.PositiveIntegerField(initial=None,
-                                                    verbose_name="Wie wichtig war die „durchschnittlichen Zeit im System“ vom vergangenen Jahr (Planwert) für Ihre Freigabeentscheidungen?",
+                                                    verbose_name="Wie wichtig war die „durchschnittlichen Zeit im System“ vom vergangenen Jahr für Ihre Freigabeentscheidungen?",
                                                     choices=range(1,8),
                                                     widget=widgets.RadioSelect())
 
@@ -176,7 +176,7 @@ class Player(BasePlayer):
                                                     widget=widgets.RadioSelect())
 
     imp_flowtime_comp =  models.PositiveIntegerField(initial=None,
-                                                    verbose_name="Wie wichtig war im Vergleich die „durchschnittlichen Zeit im System“ vom vergangenen Jahr (Planwert) und die „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden?",
+                                                    verbose_name="Wie wichtig war im Vergleich die „durchschnittlichen Zeit im System“ vom vergangenen Jahr und die „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden?",
                                                     choices=range(0,8),
                                                     widget=widgets.RadioSelect())
 
@@ -200,7 +200,7 @@ class Player(BasePlayer):
                                             verbose_name="Haben Sie in manchen Runden zu wenig freigegeben?")
 
     comp_flowtimes_both = models.BooleanField(initial=None,
-                                            verbose_name="Haben Sie über die Runden hinweg die „durchschnittlichen Zeit im System“ vom vergangenen Jahr (Planwert) mit der „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden verglichen?")
+                                            verbose_name="Haben Sie über die Runden hinweg die „durchschnittlichen Zeit im System“ vom vergangenen Jahr mit der „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden verglichen?")
 
     comp_flowtimes_rounds = models.BooleanField(initial=None,
                                             verbose_name="Haben Sie zwischen den Runden die „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden verglichen?")
