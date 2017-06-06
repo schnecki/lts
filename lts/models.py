@@ -48,7 +48,7 @@ class Constants(BaseConstants):
     test_period = 1
 
     # rounds
-    exp_rounds = 2             # number of experiment rounds
+    exp_rounds = 24             # number of experiment rounds
 
     # plus 1 for round in which releases of last week are given
     num_rounds = max_test_rounds + 1 + exp_rounds
