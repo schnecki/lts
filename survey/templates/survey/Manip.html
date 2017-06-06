@@ -2,23 +2,62 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-TODO
+Evaluierung
 {% endblock %}
 
 {% block content %}
 {% csrf_token %}
 <div class="header well well-lg">
 
-  TODO
-
-    <table style="width:100%;">
+  <table class="tableRelease" style="width:100%">
+    <thead class="space">
       <tr>
-        <td style="text-align:center;"> gar nicht risikobereit </td>
-        <td style="width:40%;">{{ form.risk }}</td>
-        <td style="text-align:center;"> sehr risikobereit</td>
+        <th class="left firstLine"></th>
+        <th colspan="4" class="colsp left firstLine">Nicht schwankend</th>
+        <th colspan="4" class="colsp right firstLine">Sehr schwankend</th>
       </tr>
-    </table>
+    </thead>
+    {% for field in form.visible_fields|slice:":2" %}
+    <tr>
+      <td class="left">{{field.label_tag}}{{field.errors}}</td>
+      <td></td>
+      <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br />
+
+
+  <table class="tableRelease" style="width:100%">
+    <thead class="space">
+      <tr>
+        <th class="left firstLine"></th>
+        <th colspan="4" class="colsp left firstLine">Nicht wichtig</th>
+        <th colspan="4" class="colsp right firstLine">Sehr wichtig</th>
+      </tr>
+    </thead>
+    {% for field in form.visible_fields|slice:"2:" %}
+    <tr>
+      <td class="left">{{field.label_tag}}{{field.errors}}</td>
+      <td></td>
+      <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+    </tr>
+    {% endfor %}
+  </table>
 </div>
+
 
 {% next_button %}
 
@@ -27,4 +66,31 @@ TODO
 
 {% block scripts %}
 
+  var bgcolor = {{ bgcolor|json }};
+  document.body.style.background = bgcolor;
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+      table {
+          text-align:center;
+      }
+      th, td  {
+          text-align:center;
+      }
+      .left {
+          text-align:left;
+      }
+      .colsp {
+          width:20%;
+      }
+
+      .right {
+          text-align:right;
+      }
+      .firstLine{
+          border-bottom: 2px solid black;
+      }
+</style>
 {% endblock %}

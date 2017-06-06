@@ -8,22 +8,6 @@ Evaluierung
 {% block content %}
 {% csrf_token %}
 
-<style type="text/css">
-      table, th, td  {
-          text-align:center;
-          width:20px;
-      }
-      .left {
-          text-align:left;
-      }
-      .right {
-          text-align:right;
-      }
-      .firstLine{
-          border-bottom: 2px solid black;
-      }
-</style>
-
 <div class="header well well-lg">
   <center><p>Ihre Angaben werden vertraulich behandelt.</p></center>
 </div>
@@ -71,4 +55,22 @@ Evaluierung
 
 </script>
 
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+      table, th, td  {
+          text-align:center;
+          width:20px;
+      }
+      .left {
+          text-align:left;
+      }
+      .right {
+          text-align:right;
+      }
+      .firstLine{
+          border-bottom: 2px solid black;
+      }
+</style>
 {% endblock %}

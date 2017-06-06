@@ -151,3 +151,61 @@ class Player(BasePlayer):
                                               choices=range(1,8),
                                               verbose_name="entspannt ist, mit Stress gut umgehen kann.",
                                               widget=widgets.RadioSelect())
+
+
+    uncertainty = models.TextField()
+
+    variation_demand = models.PositiveIntegerField(initial=None,
+                                                   choices=range(1,8),
+                                                   verbose_name="Wie schätzen Sie die Schwankung der Nachfrage ein (Anzahl Aufträge pro Runde)?",
+                                                   widget=widgets.RadioSelect())
+
+    variation_throughputtime = models.PositiveIntegerField(initial=None,
+                                                           choices=range(1,8),
+                                                           verbose_name="Wie schätzen Sie die Schwankung der „durchschnittlichen Zeit im System“ ein (bezogen auf Werte „pro Auftrag vom letzten Durchgang“)?",
+                                                           widget=widgets.RadioSelect())
+
+    imp_flowtime_year = models.PositiveIntegerField(initial=None,
+                                                    verbose_name="Wie wichtig war die „durchschnittlichen Zeit im System“ vom vergangenen Jahr (Planwert) für Ihre Freigabeentscheidungen?",
+                                                    choices=range(1,8),
+                                                    widget=widgets.RadioSelect())
+
+    imp_flowtime_round = models.PositiveIntegerField(initial=None,
+                                                    verbose_name="Wie wichtig war die „durchschnittlichen Zeit im System“ von der jeweils letzten Runden für Ihre Freigabeentscheidungen?",
+                                                    choices=range(1,8),
+                                                    widget=widgets.RadioSelect())
+
+    imp_flowtime_comp =  models.PositiveIntegerField(initial=None,
+                                                    verbose_name="Wie wichtig war im Vergleich die „durchschnittlichen Zeit im System“ vom vergangenen Jahr (Planwert) und die „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden?",
+                                                    choices=range(0,8),
+                                                    widget=widgets.RadioSelect())
+
+    imp_costs =  models.PositiveIntegerField(initial=None,
+                                                    verbose_name="Wie wichtig waren die Kosten für Ihre Freigabeentscheidungen?",
+                                                    choices=range(1,8),
+                                                    widget=widgets.RadioSelect())
+
+    predict_order = models.PositiveIntegerField(initial=None,
+                                                    verbose_name="Wie vorhersehbar waren für Sie die Anzahl Aufträge pro Runde?",
+                                                    choices=range(1,8),
+                                                    widget=widgets.RadioSelect())
+
+    release_more_necessary = models.BooleanField(initial=None,
+                                                 verbose_name="Haben Sie eher mehr Aufträge als notwendig freigegeben?")
+
+    release_too_many = models.BooleanField(initial=None,
+                                           verbose_name="Haben Sie in manchen Runden zu viel freigegeben?")
+
+    release_to_little = models.BooleanField(initial=None,
+                                            verbose_name="Haben Sie in manchen Runden zu wenig freigegeben?")
+
+    comp_flowtimes_both = models.BooleanField(initial=None,
+                                            verbose_name="Haben Sie über die Runden hinweg die „durchschnittlichen Zeit im System“ vom vergangenen Jahr (Planwert) mit der „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden verglichen?")
+
+    comp_flowtimes_rounds = models.BooleanField(initial=None,
+                                            verbose_name="Haben Sie zwischen den Runden die „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden verglichen?")
+
+    nr_order_for_release = models.PositiveIntegerField(initial=None,
+                                                       verbose_name="Wie viele Aufträge vom Auftragsbuch haben Sie für Ihre Freigabeentscheidung miteinbezogen?",
+                                                       choices=range(1,8),
+                                                       widget=widgets.RadioSelect())

@@ -315,7 +315,7 @@ SESSION_CONFIGS = [
         'test_date_arr_move': 210, # nr of days to substract from arr date for test
         'test_date_due_move': 250, # nr of days to substract from due date for test
         'test_date_due_rush_move': 220, # nr of days to subtract for rush order
-                                         # from due date
+                                        # from due date
 
 
     },

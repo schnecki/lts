@@ -1,0 +1,61 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Evaluierung
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="header well well-lg">
+
+    {% for field in form.visible_fields|slice:":5" %}
+        {% formfield field %}
+    {% endfor %}
+
+  <br />
+
+</div>
+
+
+{% next_button %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+  var bgcolor = {{ bgcolor|json }};
+  document.body.style.background = bgcolor;
+
+  var imp_ft_comp_show = {{ imp_flowtime_comp_show|json }};
+  if (imp_ft_comp_show) {
+    var e = getElementById('ft_cmp_show');
+    e.checked = true;
+  }
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+      table {
+          text-align:center;
+      }
+      th, td  {
+          text-align:center;
+      }
+      .left {
+          text-align:left;
+      }
+      .colsp {
+          width:20%;
+      }
+
+      .right {
+          text-align:right;
+      }
+      .firstLine{
+          border-bottom: 2px solid black;
+      }
+</style>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+Evaluierung
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="header well well-lg">
+
+  <table class="tableRelease" style="width:100%">
+    <thead class="space">
+      <tr>
+        <th class="left firstLine"></th>
+        <th colspan="4" class="colsp left firstLine">Nicht wichtig</th>
+        <th colspan="4" class="colsp right firstLine">Sehr wichtig</th>
+      </tr>
+    </thead>
+    {% for field in form.visible_fields|slice:":1" %}
+      {% if imp_flowtime_comp_show %}
+      <tr>
+        <td class="left">{{field.label_tag}}{{field.errors}}</td>
+        <td></td>
+        <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+      </tr>
+      {% else %}
+        <tr style="display:none;visibility:hidden;"><td colspan="9">
+          <input type="radio" id="ft_cmp_show" name="{{field.html_name}}" value="0" checked>
+        </td></tr>
+      {% endif %}
+    {% endfor %}
+    {% for field in form.visible_fields|slice:"1:2" %}
+    <tr>
+      <td class="left">{{field.label_tag}}{{field.errors}}</td>
+      <td></td>
+      <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br />
+
+  <table class="tableRelease" style="width:100%">
+    <thead class="space">
+      <tr>
+        <th class="left firstLine"></th>
+        <th colspan="4" class="colsp left firstLine">Nicht vorhersehbar</th>
+        <th colspan="4" class="colsp right firstLine">Sehr vorhersehbar</th>
+      </tr>
+    </thead>
+    {% for field in form.visible_fields|slice:"2:3" %}
+    <tr>
+      <td class="left">{{field.label_tag}}{{field.errors}}</td>
+      <td></td>
+      <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br />
+  <table class="tableRelease" style="width:100%">
+    <thead class="space">
+      <tr>
+        <th class="left firstLine"></th>
+        <th colspan="4" class="colsp left firstLine">Nur den nächsten Auftrag</th>
+        <th colspan="4" class="colsp right firstLine">Alle bekannten Aufträge</th>
+      </tr>
+    </thead>
+    {% for field in form.visible_fields|slice:"3:" %}
+    <tr>
+      <td class="left">{{field.label_tag}}{{field.errors}}</td>
+      <td></td>
+      <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+
+</div>
+
+
+{% next_button %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+  var bgcolor = {{ bgcolor|json }};
+  document.body.style.background = bgcolor;
+
+  var imp_ft_comp_show = {{ imp_flowtime_comp_show|json }};
+  if (imp_ft_comp_show) {
+    var e = getElementById('ft_cmp_show');
+    e.checked = true;
+  }
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+      table {
+          text-align:center;
+      }
+      th, td  {
+          text-align:center;
+      }
+      .left {
+          text-align:left;
+      }
+      .colsp {
+          width:20%;
+      }
+
+      .right {
+          text-align:right;
+      }
+      .firstLine{
+          border-bottom: 2px solid black;
+      }
+</style>
+{% endblock %}
