@@ -1,10 +1,10 @@
 
 models.py,117
 class Constants(11,242
-class Subsession(20,446
-class Group(24,491
-class Player(28,526
-    def set_payoff(29,552
+class Subsession(20,478
+class Group(24,523
+class Player(28,558
+    def set_payoff(29,584
 
 _builtin/__init__.py,151
 class Page(6,130
@@ -34,13 +34,6 @@ class Manip2(66,1920
 class Manip3(78,2401
     def vars_for_template(83,2606
 class End(89,2762
-
-flycheck_models.py,117
-class Constants(11,242
-class Subsession(20,446
-class Group(24,491
-class Player(28,526
-    def set_payoff(29,552
 
 __init__.py,0
 

@@ -14,14 +14,15 @@ class PaymentInfo(Page):
         participant = self.participant
         payfun = pickle.loads(self.player.subsession.session.config['payment_fun'])
         csts = self.participant.vars['sum_costs']
-        self.player.auszahlung = payfun(csts)
+        csts_last_week = self.player.subsession.session.config['costs_lastweek']
+        self.player.auszahlung = payfun(csts-csts_last_week)
 
 
         return {
             'redemption_code': participant.label or participant.code,
             'sum_costs': "{0:.2f}".format(csts).replace(".",","),
             'payment': "{0:.2f}".format(payfun(csts)).replace(".",","),
-            'costs_lastweek': self.player.subsession.session.config['costs_lastweek'],
+            'costs_lastweek': csts_last_week,
             'benchmark': self.player.subsession.session.config['benchmark'],
             'actual_costs': "{0:.2f}".format(csts-self.player.subsession.session.config['costs_lastweek']).replace(".",","),
             'code': participant.code,

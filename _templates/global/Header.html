@@ -20,7 +20,7 @@
 
 
 <div id="testtimer" class="alert alert-warning">
-  Zeit bis zum Ende der Testphase: <span id="timer"></span> Sekunden<span id="timerdone"></span>
+  Zeit bis zum Ende der Probephase: <span id="timer"></span> Sekunden<span id="timerdone"></span>
 </div>
 
 {% if show_howto_info %}
@@ -131,7 +131,7 @@ if (test_phase) {
       if (secs_left < 0) {
 
           document.getElementById("timer").innerHTML = 0;
-          document.getElementById("timerdone").innerHTML = " ...System beendet Testphase, bitte warten";
+          document.getElementById("timerdone").innerHTML = " ...System beendet Probephase, bitte warten";
           var xs = document.getElementsByClassName("next-button");
           xs[0].click();
       } else {

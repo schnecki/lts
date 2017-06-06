@@ -9,6 +9,8 @@ Evaluierung
 {% csrf_token %}
 <div class="header well well-lg">
 
+  <h3>Beantworten Sie folgende Fragen, welche sich auf alle Freigaberunden beziehen:</h3><br />
+
   <table class="tableRelease" style="width:100%">
     <thead class="space">
       <tr>
@@ -65,10 +67,10 @@ Evaluierung
 {% endblock %}
 
 {% block scripts %}
-
+<script>
   var bgcolor = {{ bgcolor|json }};
   document.body.style.background = bgcolor;
-
+</script>
 {% endblock %}
 
 {% block styles %}

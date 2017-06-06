@@ -24,7 +24,7 @@ Evaluierung
 {% endblock %}
 
 {% block scripts %}
-
+<script>
   var bgcolor = {{ bgcolor|json }};
   document.body.style.background = bgcolor;
 
@@ -33,7 +33,7 @@ Evaluierung
     var e = getElementById('ft_cmp_show');
     e.checked = true;
   }
-
+</script>
 {% endblock %}
 
 {% block styles %}

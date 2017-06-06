@@ -181,7 +181,7 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 6.75,
         'start_wip_count': 2,
 
-        'payment_fun': pickle.dumps(lambda csts: max(4,14+(0-csts)/DIV_NR)),
+        'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(0-csts)/DIV_NR)),
         'benchmark': 0,
 
         # Starting information before intro
@@ -219,7 +219,7 @@ SESSION_CONFIGS = [
         'start_flow_time': 8.10,
         'flow_time_last_year': 13.49,
         'start_wip_count': 4,
-        'payment_fun': pickle.dumps(lambda csts: 14+(490-csts)/DIV_NR),
+        'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(490-csts)/DIV_NR)),
         'costs_lastweek': 10,
         'benchmark': 490,
 
@@ -257,7 +257,7 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 13.01,
         'start_wip_count': 4,
 
-        'payment_fun': pickle.dumps(lambda csts: 14+(440-csts)/DIV_NR),
+        'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(440-csts)/DIV_NR)),
         'costs_lastweek': 10,
         'benchmark': 440,
 

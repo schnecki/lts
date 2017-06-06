@@ -21,7 +21,7 @@ class Constants(BaseConstants):
 
     # background colors
     bgcolor_test_phase = "hsla(60, 100%, 50%, 0.1)"
-    name_test_phase = "Testaufgabenphase"
+    name_test_phase = "Verständnisfragen"
 
 
 class Subsession(BaseSubsession):

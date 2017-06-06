@@ -48,7 +48,7 @@ class Constants(BaseConstants):
     test_period = 1
 
     # rounds
-    exp_rounds = 24             # number of experiment rounds
+    exp_rounds = 2             # number of experiment rounds
 
     # plus 1 for round in which releases of last week are given
     num_rounds = max_test_rounds + 1 + exp_rounds
@@ -308,10 +308,10 @@ class Subsession(BaseSubsession):
 
                         for o in demandsTest:
                             o.set_participant_id(p.participant.id)
-                            print("order: ", o)
-                            print("player: ", p.particip)
-                            print("self.round_number: ", self.round_number)
-                            print("test_round: ", test_round)
+                            # print("order: ", o)
+                            # print("player: ", p.particip)
+                            # print("self.round_number: ", self.round_number)
+                            # print("test_round: ", test_round)
                             o.save()
                             memb = Membership(particip=p.particip, order=o)
                             memb.save()

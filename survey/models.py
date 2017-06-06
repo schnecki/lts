@@ -13,7 +13,7 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 1
 
-    name_surv_phase = "Befragungsphase"
+    name_surv_phase = "Fragebogen und Informationen zu Ihrem Verdienst"
     bgcolor_surv_phase = "hsla(147, 58%, 53.3%, 0.1)"
 
 
@@ -162,23 +162,27 @@ class Player(BasePlayer):
 
     variation_throughputtime = models.PositiveIntegerField(initial=None,
                                                            choices=range(1,8),
-                                                           verbose_name="Wie schätzen Sie die Schwankung der „durchschnittlichen Zeit im System“ ein (bezogen auf Werte „pro Auftrag vom letzten Durchgang“)?",
+                                                           verbose_name="Wie schätzen Sie die Schwankung der „durchschnittlichen Zeit im System pro Auftrag der letzten Runde“ ein?",
                                                            widget=widgets.RadioSelect())
 
     imp_flowtime_year = models.PositiveIntegerField(initial=None,
-                                                    verbose_name="Wie wichtig war die „durchschnittlichen Zeit im System“ vom vergangenen Jahr für Ihre Freigabeentscheidungen?",
+                                                    verbose_name="Wie wichtig war für Ihre Freigabeentscheidungen die „durchschnittliche Zeit im System pro Auftrag auf Basis des vergangenen Jahres“?",
                                                     choices=range(1,8),
                                                     widget=widgets.RadioSelect())
 
     imp_flowtime_round = models.PositiveIntegerField(initial=None,
-                                                    verbose_name="Wie wichtig war die „durchschnittlichen Zeit im System“ von der jeweils letzten Runden für Ihre Freigabeentscheidungen?",
+                                                     verbose_name="Wie wichtig war für Ihre Freigabeentscheidungen die „durchschnittliche Zeit im System pro Auftrag der letzten Runde“?",
                                                     choices=range(1,8),
                                                     widget=widgets.RadioSelect())
 
     imp_flowtime_comp =  models.PositiveIntegerField(initial=None,
-                                                    verbose_name="Wie wichtig war im Vergleich die „durchschnittlichen Zeit im System“ vom vergangenen Jahr und die „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden?",
+                                                     verbose_name="Wie wichtig war für Ihre Entscheidungen die „durchschnittliche Zeit im System pro Auftrag auf Basis des vergangenen Jahres“ im Vergleich zu der „durchschnittlichen Zeit im System pro Auftrag der letzten Runde“?",
+
                                                     choices=range(0,8),
-                                                    widget=widgets.RadioSelect())
+                                                    widget=widgets.SliderInput(attrs={'step': '1',
+                                                                                      'min':'1',
+                                                                                      'max':'8'}))
+
 
     imp_costs =  models.PositiveIntegerField(initial=None,
                                                     verbose_name="Wie wichtig waren die Kosten für Ihre Freigabeentscheidungen?",
@@ -200,10 +204,10 @@ class Player(BasePlayer):
                                             verbose_name="Haben Sie in manchen Runden zu wenig freigegeben?")
 
     comp_flowtimes_both = models.BooleanField(initial=None,
-                                            verbose_name="Haben Sie über die Runden hinweg die „durchschnittlichen Zeit im System“ vom vergangenen Jahr mit der „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden verglichen?")
+                                            verbose_name="Haben Sie über die Runden hinweg die „durchschnittliche Zeit im System pro Auftrag auf Basis des vergangenen Jahres“ mit der „durchschnittlichen Zeit im System pro Auftrag der letzten Runde“ verglichen?")
 
     comp_flowtimes_rounds = models.BooleanField(initial=None,
-                                            verbose_name="Haben Sie zwischen den Runden die „durchschnittlichen Zeit im System“ bezogen auf die jeweils letzte Runden verglichen?")
+                                            verbose_name="Haben Sie zwischen den Runden die „durchschnittlichen Zeit pro Auftrag der letzten Runde“ verglichen?")
 
     nr_order_for_release = models.PositiveIntegerField(initial=None,
                                                        verbose_name="Wie viele Aufträge vom Auftragsbuch haben Sie für Ihre Freigabeentscheidung miteinbezogen?",

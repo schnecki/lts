@@ -10,6 +10,37 @@ Evaluierung
 <div class="header well well-lg">
 
   <table class="tableRelease" style="width:100%">
+    {% for field in form.visible_fields|slice:":1" %}
+      {% if imp_flowtime_comp_show %}
+    <thead class="space">
+      <tr>
+        <th class="left firstLine"></th>
+        <th colspan="4" class="colsp left firstLine">Vergangenes Jahr war wichtiger</th>
+        <th colspan="4" class="colsp right firstLine">Letzte Runde war wichtiger</th>
+      </tr>
+    </thead>
+    <tr>
+      <td class="left">{{field.label_tag}}{{field.errors}}</td>
+      <td></td>
+      <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+      <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+    </tr>
+      {% else %}
+        <tr style="display:none;visibility:hidden;"><td colspan="9">
+          <input type="radio" id="ft_cmp_show" name="{{field.html_name}}" value="0" checked>
+        </td></tr>
+  {% endif %}
+  </table>
+  {% endfor %}
+  <br />
+
+
+  <table class="tableRelease" style="width:100%">
     <thead class="space">
       <tr>
         <th class="left firstLine"></th>
@@ -17,25 +48,6 @@ Evaluierung
         <th colspan="4" class="colsp right firstLine">Sehr wichtig</th>
       </tr>
     </thead>
-    {% for field in form.visible_fields|slice:":1" %}
-      {% if imp_flowtime_comp_show %}
-      <tr>
-        <td class="left">{{field.label_tag}}{{field.errors}}</td>
-        <td></td>
-        <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
-        <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
-        <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
-        <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
-        <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
-        <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
-        <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
-      </tr>
-      {% else %}
-        <tr style="display:none;visibility:hidden;"><td colspan="9">
-          <input type="radio" id="ft_cmp_show" name="{{field.html_name}}" value="0" checked>
-        </td></tr>
-      {% endif %}
-    {% endfor %}
     {% for field in form.visible_fields|slice:"1:2" %}
     <tr>
       <td class="left">{{field.label_tag}}{{field.errors}}</td>
@@ -108,7 +120,7 @@ Evaluierung
 {% endblock %}
 
 {% block scripts %}
-
+<script>
   var bgcolor = {{ bgcolor|json }};
   document.body.style.background = bgcolor;
 
@@ -117,7 +129,7 @@ Evaluierung
     var e = getElementById('ft_cmp_show');
     e.checked = true;
   }
-
+</script>
 {% endblock %}
 
 {% block styles %}
