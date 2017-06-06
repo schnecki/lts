@@ -348,3 +348,4 @@ class Player(BasePlayer):
     click_show = models.IntegerField(default=0)
     test_round = models.BooleanField(default=True)
     release_last_week_round = models.BooleanField(default=False)
+    nrOfReleases = models.IntegerField(null=True)

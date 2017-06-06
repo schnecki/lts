@@ -1,0 +1,30 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+TODO
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="header well well-lg">
+
+  TODO
+
+    <table style="width:100%;">
+      <tr>
+        <td style="text-align:center;"> gar nicht risikobereit </td>
+        <td style="width:40%;">{{ form.risk }}</td>
+        <td style="text-align:center;"> sehr risikobereit</td>
+      </tr>
+    </table>
+</div>
+
+{% next_button %}
+
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

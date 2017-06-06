@@ -20,7 +20,7 @@ class Demographics(Page):
 
 
 class RiskAttitude(Page):
-    
+
     form_model = models.Player
     form_fields = ['risk']
 
@@ -47,6 +47,10 @@ class HowTo(Page):
                  'phase': Constants.name_surv_phase,
                 }
 
+
+class Manip(Page):
+    pass
+
 class End(Page):
     pass
 
@@ -54,6 +58,7 @@ class End(Page):
 page_sequence = [
     End,
     HowTo,
+    Manip,
     RiskAttitude,
     Personality,
     Demographics]

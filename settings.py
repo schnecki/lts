@@ -80,6 +80,37 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
+
+# rooms
+ROOM_DEFAULTS = {
+    'participant_label_file': 'ar4.txt',
+}
+
+ROOMS = [
+    {
+        'name': 'AR1',
+        'display_name': 'Arbeitsraum 1 (EconLab)',
+        'participant_label_file': 'ar1.txt',
+    },
+    {
+        'name': 'AR4_1',
+        'display_name': 'Arbeitsraum 4-1',
+    },
+    {
+        'name': 'AR4_2',
+        'display_name': 'Arbeitsraum 4-2',
+    },
+    {
+        'name': 'AR4_3',
+        'display_name': 'Arbeitsraum 4-3',
+    },
+    {
+        'name': 'AR4_4',
+        'display_name': 'Arbeitsraum 4-4',
+    },
+]
+
+
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
@@ -132,6 +163,8 @@ SESSION_CONFIG_DEFAULTS = {
     'mturk_hit_settings': mturk_hit_settings,
 }
 
+DIV_NR = 50   # ACHTUNG: AUCH AUF PAYMENTINFO.HTML ANPASSEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 SESSION_CONFIGS = [
     {
         'name': 'lts1',
@@ -148,7 +181,7 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 6.75,
         'start_wip_count': 2,
 
-        'payment_fun': pickle.dumps(lambda csts: 4+10*20/(20+csts)),
+        'payment_fun': pickle.dumps(lambda csts: max(4,14+(0-csts)/DIV_NR)),
         'benchmark': 0,
 
         # Starting information before intro
@@ -186,7 +219,7 @@ SESSION_CONFIGS = [
         'start_flow_time': 8.10,
         'flow_time_last_year': 13.49,
         'start_wip_count': 4,
-        'payment_fun': pickle.dumps(lambda csts: 4+10*(490+20)/(csts-10+20)),
+        'payment_fun': pickle.dumps(lambda csts: 14+(490-csts)/DIV_NR),
         'costs_lastweek': 10,
         'benchmark': 490,
 
@@ -224,7 +257,7 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 13.01,
         'start_wip_count': 4,
 
-        'payment_fun': pickle.dumps(lambda csts: 4+10*(440+20)/(csts-10+20)),
+        'payment_fun': pickle.dumps(lambda csts: 14+(440-csts)/DIV_NR),
         'costs_lastweek': 10,
         'benchmark': 440,
 
@@ -261,7 +294,7 @@ SESSION_CONFIGS = [
         'start_flow_time': 6.75,
         'flow_time_last_year': 17.11,
         'start_wip_count': 3,
-        'payment_fun': pickle.dumps(lambda csts: 4+10*(845+20)/(csts-5+20)),
+        'payment_fun': pickle.dumps(lambda csts: 14+(845-csts)/DIV_NR),
         'costs_lastweek': 5,
         'benchmark': 845,
 

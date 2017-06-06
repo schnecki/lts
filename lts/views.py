@@ -40,12 +40,16 @@ class OrderRelease(Page):
         self.player.particip.save()
 
         # save released orders
+        nrReleases = 0
         for order in orders:
             if "order_"+str(order.get_order_id()) in request.POST and \
                request.POST["order_"+str(order.get_order_id())]:
-
+                nrReleases += 1
                 order.set_release(current_period.start)
                 order.save()
+
+        # save nr of releases
+        self.player.nrOfReleases = nrReleases
 
         return super(OrderRelease, self).post(request, **kwargs)
 

@@ -1,4 +1,16 @@
 
+flycheck_views.py,277
+class Demographics(6,141
+    def vars_for_template(16,393
+class RiskAttitude(22,557
+    def vars_for_template(27,643
+class Personality(32,806
+    def vars_for_template(36,928
+class HowTo(41,1091
+    def vars_for_template(45,1171
+class Manip(51,1335
+class End(54,1364
+
 models.py,117
 class Constants(11,242
 class Subsession(20,446
@@ -18,23 +30,17 @@ tests.py,49
 class PlayerBot(6,129
     def play_round(8,152
 
-views.py,256
+views.py,277
 class Demographics(6,141
     def vars_for_template(16,393
 class RiskAttitude(22,557
-    def vars_for_template(27,647
-class Personality(32,810
-    def vars_for_template(36,932
-class HowTo(41,1095
-    def vars_for_template(45,1175
-class End(50,1338
-
-flycheck_models.py,117
-class Constants(11,242
-class Subsession(20,446
-class Group(24,491
-class Player(28,526
-    def set_payoff(29,552
+    def vars_for_template(27,643
+class Personality(32,806
+    def vars_for_template(36,928
+class HowTo(41,1091
+    def vars_for_template(45,1171
+class Manip(51,1335
+class End(54,1364
 
 __init__.py,0
 
