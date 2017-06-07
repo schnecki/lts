@@ -70,8 +70,10 @@ class Results(Page):
                 'sum_bo': c(bo),
         }
 
-
 class Info(Page):
+    pass
+
+class Anleitung(Page):
     pass
 
 class Welcome(Page):
@@ -102,5 +104,6 @@ page_sequence = [
     # Results,
     Welcome,
     Test,
+    Anleitung,
     Info
 ]

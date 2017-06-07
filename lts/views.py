@@ -32,9 +32,10 @@ class OrderRelease(Page):
 
         orders = get_releasable_orders(self, is_test_phase(self))
         current_period = self.player.period
-        start_time = request.POST["start_time"]
+        start_time = request.POST.get("start_time", int(time())-20)
         end_time = int(time())
         diff_secs = end_time - int(start_time)
+
 
         self.player.particip.test_time_left -= diff_secs
         self.player.particip.save()
@@ -186,7 +187,7 @@ class Results(Page):
     def post(self, request, **kwargs):
         "Override the default post behavior"
 
-        start_time = request.POST["start_time"]
+        start_time = request.POST.get("start_time", int(time())-20)
         end_time = int(time())
         diff_secs = end_time - int(start_time)
         self.player.particip.test_time_left -= diff_secs

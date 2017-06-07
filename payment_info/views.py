@@ -17,7 +17,6 @@ class PaymentInfo(Page):
         csts_last_week = self.player.subsession.session.config['costs_lastweek']
         self.player.auszahlung = payfun(csts-csts_last_week)
 
-
         return {
             'redemption_code': participant.label or participant.code,
             'sum_costs': "{0:.2f}".format(csts).replace(".",","),

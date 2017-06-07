@@ -1,0 +1,39 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+{% load staticfiles %}
+
+{% block title %}
+      Verständnisfragen
+{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<div class="info">
+
+Gratulation, Sie haben die Verständnisfragen erfolgreich gelöst. Bitte lesen Sie
+nun den zweiten Teil der Anleitung. Sie haben dafür ca. 7 Minuten Zeit.
+
+</div>
+
+
+<!--
+Mit einem Klick auf 'Weiter' beginnen Sie die Probephase. Alle Entscheidungen in
+der Probephase sind <b>NICHT</b> auszahlungsrelevant und haben somit keinen
+Einfluss auf Ihr gesamtes Einkommen vom Experiment.
+
+
+Documentation on how to write a django template here:
+https://docs.djangoproject.com/en/1.8/ref/templates/language/
+
+Bootstrap comes pre-loaded, so you can use any Bootstrap elements:
+http://getbootstrap.com/components/
+
+-->
+<div style="visibility:hidden;">
+    {% next_button %}
+</div>
+{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'global/info.css' %}" />
+{% endblock %}
