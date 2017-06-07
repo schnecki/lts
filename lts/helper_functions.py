@@ -226,7 +226,10 @@ def simulate(page):
     page.player.costs.fgi = csts_fgi
     page.player.costs.bo = csts_bo
     page.player.costs.save()    # save costs to db
-    page.player.payoff = csts_wip + csts_fgi + csts_bo # save as payoff for output
+    if is_test_phase(page):
+        page.player.payoff = 0
+    else:
+        page.player.payoff = csts_wip + csts_fgi + csts_bo # save as payoff for output
 
     # calculate statistics
     # print("all: ", list(all_orders))
