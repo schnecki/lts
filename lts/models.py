@@ -133,6 +133,7 @@ class Particip(models.Model):
                                     through_fields=('particip', 'order'))
     in_current_period = models.IntegerField(default=1)
     test_time_left = models.IntegerField(default=0)
+    test_failed = models.BooleanField(default=False)
 
 
     def __str__(self):

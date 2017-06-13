@@ -30,14 +30,25 @@ SECRET_KEY = 'm632ehh7x5avbjql)hdtfx5=b#bsflz9-dtmmw$b$t%l6s8-yt'
 # postgres://USER:PASSWORD@HOST:PORT/NAME
 # mysql://USER:PASSWORD@HOST:PORT/NAME
 
-DATABASES = {
-    'default': dj_database_url.config(
-        # default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-        # default='postgres://lts:uibk-lts@localhost:5432/lts'
-        default='postgres://otree_user:uibk-lts@localhost:5432/django_db'
+if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
+    DATABASES = {
+        'default': dj_database_url.config(
+            # default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+            # default='postgres://lts:uibk-lts@localhost:5432/lts'
+            default='postgres://otree_user:uibk-lts@localhost:5432/django_db'
+     
+        )
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+            # default='postgres://lts:uibk-lts@localhost:5432/lts'
+            # default='postgres://otree_user:uibk-lts@localhost:5432/django_db'
+     
+        )
+    }
 
-    )
-}
 
 # AUTH_LEVEL:
 # If you are launching a study and want visitors to only be able to
@@ -286,8 +297,8 @@ SESSION_CONFIGS = [
         'szenario': 4,
         'display_name': "Lead Time Syndrome Szenario 4 (SaiKonNoRo)",
         'num_demo_participants': 1,
-        'app_sequence': [# 'pre',
-                         # 'lts',
+        'app_sequence': ['pre',
+                         'lts',
                          'survey',
                          'payment_info'],
         'file_dem': "./doc/data/SaiKonNoRo.csv",

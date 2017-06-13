@@ -1,0 +1,11 @@
+Participants which need to be excluded, as they did not succeed in the test phase:
+The field 'test_failed' in the table 'lts_particip' is set to TRUE for these
+participants.
+
+Participant Id
+--------------
+40
+17
+42
+29
+36
