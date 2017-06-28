@@ -39,6 +39,9 @@ class Constants(BaseConstants):
     test_round_ID = -3          # ID for first period of test rounds
     release_last_week_ID = 0    # ID for last weeks release
 
+    # costs for workload control cockpit
+    expected_processing_time = 4.5 # for calculating workload
+    pct_processing_orders = 0.5    # pct of how much processing orders count
 
     # Test data
     test_round_length = 3       # round to play for each test round

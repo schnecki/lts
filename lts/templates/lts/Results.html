@@ -7,7 +7,12 @@
 
 {% block content %}
 {% csrf_token %}
-    {% include "global/Header.html" %}
+{% include "global/Header.html" %}
+
+<div id="wlc">
+  <span id="container" style="display: block; width:100%; width: 600px; height: 300px; margin: 0 auto"></span>
+</div>
+
 
 <div style="btn btn-primary btn-large btn-primary">
   {% next_button %}
@@ -32,6 +37,109 @@ if (secs > 0 && reset_test_phase) {
   var bgcolor = {{ bgcolor|json }};
   document.body.style.background = bgcolor;
 
+</script>
+
+<!-- WLC COCKPIT -->
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+
+<script>
+
+
+var wlc_enabled = {{ wlc_enabled|json }}
+
+if (!wlc_enabled || {{ is_last_week_release_round|json }} ) {
+  document.getElementById("wlc").style.display='none';
+  document.getElementById("wlc").style.visibility='hidden';
+} else {
+  document.getElementById("wlc").style.display='inline';
+  document.getElementById("wlc").style.visibility='display';
+}
+
+var wlc_max = {{wlc_max|json}};
+var first_half = wlc_max/2.0;
+var third_qtr = first_half + wlc_max/4.0;
+
+
+var wlc_chart = new Highcharts.Chart({
+        chart: {
+            backgroundColor: 'transparent',
+            renderTo: 'container',
+            type: 'gauge',
+            height: 300,
+        },
+        exporting: { enabled: false },
+        title: {
+            text: 'Workload Control Cockpit',
+        },
+        pane: [{
+            startAngle: -90,
+            endAngle: 90,
+            background: {{ bgcolor|json }},
+            center: ['50%', '80%'],
+            size: 350,
+        }],
+        credits: {
+            enabled: false
+        },
+        yAxis: [{
+            min: 0,
+            max: wlc_max,
+            minorTickPosition: 'outside',
+            tickPosition: 'outside',
+            tickInterval: null,
+            labels: {
+                rotation: 'auto',
+                distance: 20
+            },
+            plotBands: [{
+                from: third_qtr,
+                to: wlc_max,
+                color: '#C02316',
+                innerRadius: '90%',
+                outerRadius: '105%'
+            },
+            {
+                from: 0,
+                to: first_half,
+                color: '#00FF00',
+                innerRadius: '90%',
+                outerRadius: '105%'
+            },
+            {
+                from: first_half,
+                to: third_qtr,
+                color: '#FFFF00',
+                innerRadius: '90%',
+                outerRadius: '105%'
+            }],
+            title: {
+                text: '',
+                align: 'middle',
+                y: -110
+            }
+        }],
+        plotOptions: {
+            gauge: {
+                dataLabels: {
+                    enabled: true
+                },
+                dial: {
+                    radius: '100%'
+                }
+            }
+        },
+        series: [{
+            data: [{{current_load|json}}],
+            name: ["Aktueller Prognostizierter Workload"]
+            /* yAxis: 0*/
+        }]
+    });
+
 
 </script>
+
+
 {% endblock %}

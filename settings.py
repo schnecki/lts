@@ -36,7 +36,7 @@ if environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
             # default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
             # default='postgres://lts:uibk-lts@localhost:5432/lts'
             default='postgres://otree_user:uibk-lts@localhost:5432/django_db'
-     
+
         )
     }
 else:
@@ -45,7 +45,7 @@ else:
             default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
             # default='postgres://lts:uibk-lts@localhost:5432/lts'
             # default='postgres://otree_user:uibk-lts@localhost:5432/django_db'
-     
+
         )
     }
 
@@ -192,6 +192,11 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 6.75,
         'start_wip_count': 2,
 
+        # WLC cockpit
+        'wlc_max': 20,
+        'wlc_enabled': False,
+
+        # Payment
         'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(0-csts)/DIV_NR)),
         'benchmark': 0,
 
@@ -230,6 +235,12 @@ SESSION_CONFIGS = [
         'start_flow_time': 8.10,
         'flow_time_last_year': 13.49,
         'start_wip_count': 4,
+
+        # WLC cockpit
+        'wlc_max': 40,
+        'wlc_enabled': False,
+
+        # Payment
         'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(490-csts)/DIV_NR)),
         'costs_lastweek': 10,
         'benchmark': 490,
@@ -268,6 +279,11 @@ SESSION_CONFIGS = [
         'flow_time_last_year': 13.01,
         'start_wip_count': 4,
 
+        # WLC cockpit
+        'wlc_max': 40,
+        'wlc_enabled': False,
+
+        # Payment
         'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(440-csts)/DIV_NR)),
         'costs_lastweek': 10,
         'benchmark': 440,
@@ -305,7 +321,13 @@ SESSION_CONFIGS = [
         'start_flow_time': 6.75,
         'flow_time_last_year': 17.11,
         'start_wip_count': 3,
-        'payment_fun': pickle.dumps(lambda csts: 14+(845-csts)/DIV_NR),
+
+        # WLC cockpit
+        'wlc_max': 40,
+        'wlc_enabled': False,
+
+        # Payment
+        'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(845-csts)/DIV_NR)),
         'costs_lastweek': 5,
         'benchmark': 845,
 

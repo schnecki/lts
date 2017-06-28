@@ -36,7 +36,6 @@ class OrderRelease(Page):
         end_time = int(time())
         diff_secs = end_time - int(start_time)
 
-
         self.player.particip.test_time_left -= diff_secs
         self.player.particip.save()
 
@@ -80,7 +79,17 @@ class OrderRelease(Page):
 
         # print("Period: ", self.player.period)
         # print("Particip: ", self.player.particip)
+        all_orders = get_all_orders(self)
+        orders_queue = [o for o in all_orders if
+                        o.release_date is not None and # released
+                        o.fgi_arrived_date is None and # not yet finished production
+                        not o.is_processing]           # not in machine(s)
+        processing_orders = list(filter(lambda o: o.is_processing and \
+                                        o.fgi_arrived_date is None, all_orders))
+        exp_pt = models.Constants.expected_processing_time
+        pct_pco = models.Constants.pct_processing_orders
 
+        current_load = exp_pt * len(orders_queue) + exp_pt * pct_pco * len(processing_orders)
 
         return {'releasable_orders': releasable_orders,
                 'releasable_orders_ids': releasable_orders_ids,
@@ -119,6 +128,10 @@ class OrderRelease(Page):
 
                 'bgcolor': bgcolor,
                 'phase': phase,
+                'exp_pt': exp_pt,
+                'wlc_enabled': self.player.subsession.session.config['wlc_enabled'],
+                'wlc_max': self.player.subsession.session.config['wlc_max'],
+                'current_load': current_load,
         }
 
     def before_next_page(self):
@@ -153,6 +166,20 @@ class Results(Page):
             bgcolor = Constants.bgcolor_trial_phase
             phase = Constants.name_trial_phase
 
+
+        all_orders = get_all_orders(self)
+        orders_queue = [o for o in all_orders if
+                        o.release_date is not None and # released
+                        o.fgi_arrived_date is None and # not yet finished production
+                        not o.is_processing]           # not in machine(s)
+        processing_orders = list(filter(lambda o: o.is_processing and \
+                                        o.fgi_arrived_date is None, all_orders))
+        exp_pt = models.Constants.expected_processing_time
+        pct_pco = models.Constants.pct_processing_orders
+
+        current_load = exp_pt * len(orders_queue) + exp_pt * pct_pco * len(processing_orders)
+
+
         return {'releasable_orders': get_releasable_orders(self),
                 'released_orders': get_released_orders(self),
                 'costs': self.player.costs,
@@ -182,6 +209,12 @@ class Results(Page):
                 'flow_time_year': self.player.subsession.session.config['flow_time_last_year'],
                 'bgcolor': bgcolor,
                 'phase': phase,
+
+                'wlc_enabled': self.player.subsession.session.config['wlc_enabled'],
+                'wlc_max': self.player.subsession.session.config['wlc_max'],
+                'current_load': current_load,
+
+
         }
 
     def post(self, request, **kwargs):
