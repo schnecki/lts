@@ -18,7 +18,7 @@ tests.py,49
 class PlayerBot(6,129
     def play_round(8,152
 
-views.py,426
+views.py,523
 class Demographics(6,141
     def vars_for_template(16,393
 class RiskAttitude(22,557
@@ -30,10 +30,20 @@ class HowTo(41,1091
 class Manip(51,1350
     def vars_for_template(57,1531
 class Manip2(66,1920
-    def vars_for_template(71,2085
-class Manip3(78,2401
-    def vars_for_template(83,2606
-class End(89,2762
+    def vars_for_template(72,2127
+class Manip2Cockpit(80,2529
+    def vars_for_template(89,2724
+    def is_displayed(97,3146
+class Manip3(102,3299
+    def vars_for_template(111,3581
+class End(117,3737
+
+flycheck_models.py,117
+class Constants(11,242
+class Subsession(20,478
+class Group(24,523
+class Player(28,558
+    def set_payoff(29,584
 
 __init__.py,0
 

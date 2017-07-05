@@ -237,7 +237,7 @@ var wlc_chart = new Highcharts.Chart({
             max: wlc_max,
             minorTickPosition: 'outside',
             tickPosition: 'outside',
-            tickInterval: null,
+            tickInterval: 1,
             labels: {
                 rotation: 'auto',
                 distance: 20
@@ -281,7 +281,7 @@ var wlc_chart = new Highcharts.Chart({
         },
         series: [{
             data: [{{current_load|json}}],
-            name: ["Aktueller und zukünftiger prognostizierter Workload (mit den aktuellen Freigaben)"]
+            name: ["Anzahl der Aufträge im System (+ die Aufträge die von Ihnen zur Freigabe ausgewählt wurden)"]
             /* yAxis: 0*/
         }]
     });

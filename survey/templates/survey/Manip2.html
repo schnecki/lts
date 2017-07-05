@@ -61,6 +61,22 @@ Evaluierung
       <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
     </tr>
     {% endfor %}
+    {% if cockpit_on %}
+      {% for field in form.visible_fields|slice:"2:3" %}
+      <tr>
+        <td class="left">{{field.label_tag}}{{field.errors}}</td>
+        <td></td>
+        <td><input type="radio" name="{{field.html_name}}" value="1" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="2" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="3" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="4" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="5" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="6" required {% if field.value == 'True' %}checked{% endif %}></td>
+        <td><input type="radio" name="{{field.html_name}}" value="7" required {% if field.value == 'True' %}checked{% endif %}></td>
+      </tr>
+      {% endfor %}
+    {% endif %}
+
   </table>
   <br />
 
@@ -72,7 +88,7 @@ Evaluierung
         <th colspan="4" class="colsp right firstLine">Sehr vorhersehbar</th>
       </tr>
     </thead>
-    {% for field in form.visible_fields|slice:"2:3" %}
+    {% for field in form.visible_fields|slice:"3:4" %}
     <tr>
       <td class="left">{{field.label_tag}}{{field.errors}}</td>
       <td></td>
@@ -95,7 +111,7 @@ Evaluierung
         <th colspan="4" class="colsp right firstLine">Alle bekannten Aufträge</th>
       </tr>
     </thead>
-    {% for field in form.visible_fields|slice:"3:" %}
+    {% for field in form.visible_fields|slice:"4:" %}
     <tr>
       <td class="left">{{field.label_tag}}{{field.errors}}</td>
       <td></td>

@@ -89,7 +89,7 @@ var wlc_chart = new Highcharts.Chart({
             max: wlc_max,
             minorTickPosition: 'outside',
             tickPosition: 'outside',
-            tickInterval: null,
+            tickInterval: 1,
             labels: {
                 rotation: 'auto',
                 distance: 20
@@ -133,7 +133,7 @@ var wlc_chart = new Highcharts.Chart({
         },
         series: [{
             data: [{{current_load|json}}],
-            name: ["Aktueller Prognostizierter Workload"]
+            name: ["Anzahl der Aufträge im System"]
             /* yAxis: 0*/
         }]
     });

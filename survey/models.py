@@ -213,3 +213,32 @@ class Player(BasePlayer):
                                                        verbose_name="Wie viele Aufträge vom Auftragsbuch haben Sie für Ihre Freigabeentscheidung miteinbezogen?",
                                                        choices=range(1,8),
                                                        widget=widgets.RadioSelect())
+
+
+    imp_cockpit_release = models.PositiveIntegerField(initial=None,
+                                                       verbose_name="Wie wichtig war das Cockpit für Ihre Freigabeentscheidung?",
+                                                       choices=range(1,8),
+                                                       widget=widgets.RadioSelect())
+
+
+    help_cockpit = models.PositiveIntegerField(initial=None,
+                                               verbose_name="Wie schätzen Sie die Unterstützung des Cockpits für die Freiagbeentscheidung ein?",
+                                               choices=range(1,8),
+                                               widget=widgets.RadioSelect())
+
+
+    imp_cockpit_comp =  models.PositiveIntegerField(initial=None,
+                                                     verbose_name="Wie wichtig war für Ihre Entscheidungen die „durchschnittliche Zeit im System pro Auftrag auf Basis des vergangenen Jahres“ im Vergleich zur Anzeige des Cockpits?",
+
+                                                    choices=range(0,8),
+                                                    widget=widgets.SliderInput(attrs={'step': '1',
+                                                                                      'min':'1',
+                                                                                      'max':'8'}))
+
+    imp_cockpit_comp2 =  models.PositiveIntegerField(initial=None,
+                                                     verbose_name="Wie wichtig war für Ihre Entscheidungen die „durchschnittliche Zeit im System pro Auftrag auf Basis der letzten Runde“ im Vergleich zur Anzeige des Cockpits?",
+
+                                                    choices=range(0,8),
+                                                    widget=widgets.SliderInput(attrs={'step': '1',
+                                                                                      'min':'1',
+                                                                                      'max':'8'}))

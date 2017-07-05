@@ -194,7 +194,7 @@ SESSION_CONFIGS = [
 
         # WLC cockpit
         'wlc_max': 4.44,
-        'wlc_enabled': False,
+        'wlc_enabled': True,
 
         # Payment
         'payment_fun': pickle.dumps(lambda csts: 4+max(0,14+(0-csts)/DIV_NR)),
