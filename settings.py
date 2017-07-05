@@ -193,7 +193,7 @@ SESSION_CONFIGS = [
         'start_wip_count': 2,
 
         # WLC cockpit
-        'wlc_max': 20,
+        'wlc_max': 4.44,
         'wlc_enabled': False,
 
         # Payment
@@ -237,7 +237,7 @@ SESSION_CONFIGS = [
         'start_wip_count': 4,
 
         # WLC cockpit
-        'wlc_max': 40,
+        'wlc_max': 8.88,
         'wlc_enabled': False,
 
         # Payment
@@ -280,7 +280,7 @@ SESSION_CONFIGS = [
         'start_wip_count': 4,
 
         # WLC cockpit
-        'wlc_max': 40,
+        'wlc_max': 8.88,
         'wlc_enabled': False,
 
         # Payment
@@ -323,7 +323,7 @@ SESSION_CONFIGS = [
         'start_wip_count': 3,
 
         # WLC cockpit
-        'wlc_max': 40,
+        'wlc_max': 8.88,
         'wlc_enabled': False,
 
         # Payment
