@@ -222,7 +222,7 @@ class Player(BasePlayer):
 
 
     help_cockpit = models.PositiveIntegerField(initial=None,
-                                               verbose_name="Wie schätzen Sie die Unterstützung des Cockpits für die Freiagbeentscheidung ein?",
+                                               verbose_name="Wie schätzen Sie die Unterstützung des Cockpits für Ihre Freiagbeentscheidung ein?",
                                                choices=range(1,8),
                                                widget=widgets.RadioSelect())
 
