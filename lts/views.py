@@ -27,12 +27,12 @@ class OrderRelease(Page):
     def is_displayed(self):
         return skip_rest_of_test(self)
 
-    def post(self, request, **kwargs):
+    def post(self):
         "Override the default post behavior"
 
         orders = get_releasable_orders(self, is_test_phase(self))
         current_period = self.player.period
-        start_time = request.POST.get("start_time", int(time())-20)
+        start_time = self.request.POST.get("start_time", int(time())-20)
         end_time = int(time())
         diff_secs = end_time - int(start_time)
 
@@ -42,8 +42,8 @@ class OrderRelease(Page):
         # save released orders
         nrReleases = 0
         for order in orders:
-            if "order_"+str(order.get_order_id()) in request.POST and \
-               request.POST["order_"+str(order.get_order_id())]:
+            if "order_"+str(order.get_order_id()) in self.request.POST and \
+               self.request.POST["order_"+str(order.get_order_id())]:
                 nrReleases += 1
                 order.set_release(current_period.start)
                 order.save()
@@ -51,7 +51,7 @@ class OrderRelease(Page):
         # save nr of releases
         self.player.nrOfReleases = nrReleases
 
-        return super(OrderRelease, self).post(request, **kwargs)
+        return super(OrderRelease, self).post()
 
 
     def vars_for_template(self):
@@ -217,16 +217,16 @@ class Results(Page):
 
         }
 
-    def post(self, request, **kwargs):
+    def post(self):
         "Override the default post behavior"
 
-        start_time = request.POST.get("start_time", int(time())-20)
+        start_time = self.request.POST.get("start_time", int(time())-20)
         end_time = int(time())
         diff_secs = end_time - int(start_time)
         self.player.particip.test_time_left -= diff_secs
         self.player.particip.save()
 
-        return super(Results, self).post(request, **kwargs)
+        return super(Results, self).post()
 
 
     def before_next_page(self):
